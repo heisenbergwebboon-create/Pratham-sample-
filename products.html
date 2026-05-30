@@ -1,0 +1,2330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Products — NOVA STORE</title>
+  <meta name="description" content="Shop all premium products at NOVA STORE. Electronics, Fashion, Home & Living, Beauty, and more.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ═══════════════════════════════════
+       RESET & BASE
+       ═══════════════════════════════════ */
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #000;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, select { font-family: inherit; }
+
+    ::selection { background: #000; color: #fff; }
+
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 768px)  { .container { padding: 0 40px; } }
+    @media (min-width: 1280px) { .container { padding: 0 56px; } }
+
+    /* ═══════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════ */
+
+    .announce-bar {
+      background: #000;
+      color: rgba(255,255,255,0.8);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 9px 24px;
+    }
+
+    .announce-bar .sep { color: rgba(255,255,255,0.25); margin: 0 10px; }
+
+    /* ═══════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════ */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #EEEEEE;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+    .nav-main-row { padding: 14px 0; }
+
+    .nav-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #000;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .w-light { font-weight: 300; }
+
+    .nav-search-box {
+      flex: 1;
+      max-width: 560px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) { .nav-search-box { display: none; } }
+
+    .nav-search-box input {
+      width: 100%;
+      padding: 11px 18px 11px 44px;
+      border: 1px solid #E0E0E0;
+      border-radius: 100px;
+      background: #FAFAFA;
+      font-size: 14px;
+      color: #000;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .nav-search-box input::placeholder { color: #9E9E9E; }
+    .nav-search-box input:focus { border-color: #000; background: #fff; box-shadow: 0 0 0 3px rgba(0,0,0,0.06); }
+
+    .nav-search-box svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9E9E9E;
+      pointer-events: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+
+    .nav-icon-btn:hover { background: #F5F5F5; }
+
+    .cart-count {
+      position: absolute;
+      top: 5px; right: 5px;
+      width: 16px; height: 16px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .hamburger {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: none; border: none; cursor: pointer; color: #000;
+      transition: background 0.2s ease;
+    }
+
+    .hamburger:hover { background: #F5F5F5; }
+
+    /* ─── Category Bar ─── */
+    .cat-bar {
+      border-top: 1px solid #F0F0F0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cat-bar::-webkit-scrollbar { display: none; }
+
+    .cat-bar-inner {
+      display: flex;
+      white-space: nowrap;
+      padding: 0;
+    }
+
+    .cat-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #616161;
+      padding: 13px 18px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .cat-link:hover { color: #000; }
+
+    .cat-link.active {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .cat-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 18px; right: 18px;
+      height: 2px;
+      background: #000;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* ─── Overlay + Side Menu ─── */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 800;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .side-menu {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      max-width: 340px;
+      height: 100vh; height: 100dvh;
+      background: #fff;
+      z-index: 900;
+      transform: translateX(-100%);
+      transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .side-menu.open { transform: translateX(0); }
+
+    .sm-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid #EEEEEE;
+      flex-shrink: 0;
+    }
+
+    .sm-logo { font-size: 15px; font-weight: 800; letter-spacing: 0.18em; }
+
+    .sm-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      border: none; cursor: pointer;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, transform 0.35s ease;
+    }
+
+    .sm-close:hover { background: #EEEEEE; transform: rotate(90deg); }
+
+    .sm-nav { flex: 1; overflow-y: auto; padding: 12px 0; }
+
+    .sm-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 24px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #F5F5F5;
+      transition: background 0.15s ease;
+    }
+
+    .sm-link:hover { background: #FAFAFA; }
+    .sm-link .arrow { color: #BDBDBD; font-size: 14px; }
+
+    .sm-foot {
+      padding: 18px 24px;
+      border-top: 1px solid #EEEEEE;
+      font-size: 11px;
+      color: #9E9E9E;
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════
+       PAGE HEADER
+       ═══════════════════════════════════ */
+
+    .page-hdr {
+      background: #FAFAFA;
+      border-bottom: 1px solid #EEEEEE;
+      padding: 52px 0 36px;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9E9E9E;
+      margin-bottom: 18px;
+    }
+
+    .breadcrumb a {
+      color: #9E9E9E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumb a:hover { color: #000; }
+
+    .breadcrumb .bc-sep { color: #D0D0D0; }
+    .breadcrumb .bc-current { color: #000; }
+
+    .page-hdr-heading {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      color: #000;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .page-hdr-heading .serif-word {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .page-hdr-sub {
+      font-size: 14px;
+      color: #757575;
+      font-weight: 300;
+    }
+
+    /* ═══════════════════════════════════
+       MAIN LAYOUT
+       ═══════════════════════════════════ */
+
+    .products-page { padding: 40px 0 96px; }
+
+    .page-layout {
+      display: grid;
+      grid-template-columns: 268px 1fr;
+      gap: 52px;
+      align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .page-layout {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+    }
+
+    /* ═══════════════════════════════════
+       FILTER SIDEBAR
+       ═══════════════════════════════════ */
+
+    .filter-sidebar {
+      position: sticky;
+      top: 90px;
+    }
+
+    @media (max-width: 1024px) {
+      .filter-sidebar {
+        position: static;
+        display: none;
+      }
+
+      .filter-sidebar.open {
+        display: block;
+        margin-bottom: 24px;
+      }
+    }
+
+    .filter-section {
+      margin-bottom: 36px;
+    }
+
+    .filter-section:last-child { margin-bottom: 0; }
+
+    .filter-heading {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #000;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #EEEEEE;
+    }
+
+    /* Category filter buttons */
+    .cat-btn-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cat-filter-btn {
+      display: block;
+      text-align: left;
+      width: 100%;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-weight: 400;
+      color: #616161;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.18s ease, color 0.18s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .cat-filter-btn:hover { background: #F5F5F5; color: #000; }
+
+    .cat-filter-btn.active {
+      background: #000;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    /* Checkbox-based filters */
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: #616161;
+      cursor: pointer;
+      transition: color 0.15s ease;
+      user-select: none;
+    }
+
+    .check-label:hover { color: #000; }
+
+    .check-label input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      border: 1.5px solid #D0D0D0;
+      appearance: none;
+      -webkit-appearance: none;
+      background: #fff;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .check-label input[type="checkbox"]:checked {
+      background: #000;
+      border-color: #000;
+    }
+
+    .check-label input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 4px; height: 7px;
+      border: 2px solid #fff;
+      border-top: none; border-left: none;
+      transform: translate(-50%, -60%) rotate(45deg);
+    }
+
+    .stars-gold { color: #FFA000; }
+
+    /* Clear all filters link */
+    .clear-filters {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #000;
+      background: none;
+      border: none;
+      border-bottom: 1px solid #000;
+      padding-bottom: 2px;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .clear-filters:hover { color: #757575; border-color: #757575; }
+
+    /* ═══════════════════════════════════
+       SORT + RESULTS BAR
+       ═══════════════════════════════════ */
+
+    .sort-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      padding-bottom: 22px;
+      border-bottom: 1px solid #EEEEEE;
+    }
+
+    .results-text {
+      font-size: 13px;
+      color: #757575;
+      font-weight: 300;
+    }
+
+    .results-text strong {
+      color: #000;
+      font-weight: 700;
+    }
+
+    .sort-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sort-label {
+      font-size: 12px;
+      color: #9E9E9E;
+      letter-spacing: 0.06em;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .sort-select {
+      padding: 10px 40px 10px 14px;
+      border: 1px solid #E0E0E0;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      color: #000;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+      font-family: 'Inter', sans-serif;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23424242' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      transition: border-color 0.2s ease;
+    }
+
+    .sort-select:focus { border-color: #000; }
+
+    /* View toggle (grid/list) */
+    .view-toggle {
+      display: flex;
+      gap: 4px;
+    }
+
+    .view-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #E0E0E0;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .view-btn.active { background: #000; border-color: #000; color: #fff; }
+    .view-btn:hover:not(.active) { border-color: #9E9E9E; }
+
+    /* ═══════════════════════════════════
+       MOBILE FILTER TOGGLE
+       ═══════════════════════════════════ */
+
+    .mobile-top-bar {
+      display: none;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    @media (max-width: 1024px) {
+      .mobile-top-bar { display: flex; }
+    }
+
+    .mobile-filter-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .mobile-filter-btn:hover { background: #1A1A1A; }
+
+    .mobile-filter-btn.has-filters { background: #000; }
+
+    .mobile-filter-icon { font-size: 14px; }
+
+    .filter-count-badge {
+      background: #fff;
+      color: #000;
+      font-size: 10px;
+      font-weight: 800;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-count-badge.show { display: flex; }
+
+    /* ═══════════════════════════════════
+       MOBILE FILTER DRAWER
+       ═══════════════════════════════════ */
+
+    .filter-drawer-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 700;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .filter-drawer-overlay.active { opacity: 1; visibility: visible; }
+
+    .filter-drawer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #fff;
+      z-index: 750;
+      max-height: 88vh;
+      overflow-y: auto;
+      transform: translateY(100%);
+      transition: transform 0.45s cubic-bezier(0.25,0.1,0.25,1);
+      border-radius: 16px 16px 0 0;
+    }
+
+    .filter-drawer.open { transform: translateY(0); }
+
+    .filter-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid #EEEEEE;
+      position: sticky;
+      top: 0;
+      background: #fff;
+      z-index: 1;
+    }
+
+    .filter-drawer-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .filter-drawer-close {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      border: none; cursor: pointer;
+      font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s ease, transform 0.3s ease;
+    }
+
+    .filter-drawer-close:hover { background: #EEEEEE; transform: rotate(90deg); }
+
+    .filter-drawer-body {
+      padding: 20px 24px 32px;
+    }
+
+    .filter-drawer-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #EEEEEE;
+      display: flex;
+      gap: 12px;
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+    }
+
+    .btn-apply-filters {
+      flex: 1;
+      padding: 14px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .btn-apply-filters:hover { background: #1A1A1A; }
+
+    .btn-clear-drawer {
+      padding: 14px 20px;
+      background: transparent;
+      color: #000;
+      border: 1px solid #E0E0E0;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s ease;
+    }
+
+    .btn-clear-drawer:hover { border-color: #000; }
+
+    /* ═══════════════════════════════════
+       PRODUCT GRID
+       ═══════════════════════════════════ */
+
+    .products-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    @media (max-width: 1200px) {
+      .products-grid-3 { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .products-grid-3 { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    }
+
+    /* List view variant */
+    .products-grid-3.list-view {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    /* ─── Product Card ─── */
+    .p-card {
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .p-card:hover { transform: translateY(-5px); }
+
+    .p-card-img {
+      aspect-ratio: 1 / 1;
+      background: #F5F5F5;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .p-card-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+      opacity: 0.25;
+      background: linear-gradient(145deg, #F5F5F5, #FAFAFA);
+      transition: opacity 0.3s ease;
+    }
+
+    .p-card:hover .p-card-placeholder { opacity: 0.18; }
+
+    .p-badge {
+      position: absolute;
+      top: 10px; left: 10px;
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      z-index: 2;
+    }
+
+    .p-badge.sale { background: #C62828; }
+    .p-badge.new  { background: #000; }
+    .p-badge.best { background: #424242; }
+
+    .p-wish-btn {
+      position: absolute;
+      top: 10px; right: 10px;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .p-card:hover .p-wish-btn { opacity: 1; transform: translateY(0); }
+    .p-wish-btn.active { opacity: 1; transform: translateY(0); }
+
+    .p-add-btn {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 11px 0;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.15s ease;
+      z-index: 2;
+    }
+
+    .p-card:hover .p-add-btn { opacity: 1; transform: translateY(0); }
+    .p-add-btn:hover { background: #1A1A1A; }
+
+    .p-card-cat {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #9E9E9E;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .p-card-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: #000;
+      line-height: 1.35;
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .p-card-stars {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+
+    .stars-val { font-size: 11px; color: #FFA000; letter-spacing: 0.5px; }
+    .reviews-val { font-size: 11px; color: #9E9E9E; }
+
+    .p-card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .price-now { font-size: 15px; font-weight: 700; color: #000; }
+    .price-was { font-size: 12px; color: #BDBDBD; text-decoration: line-through; }
+    .price-off { font-size: 11px; font-weight: 600; color: #2E7D32; }
+
+    /* ─── List view card ─── */
+    .list-view .p-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (min-width: 640px) {
+      .list-view .p-card { grid-template-columns: 160px 1fr; }
+    }
+
+    .list-view .p-card-img { margin-bottom: 0; }
+
+    /* ═══════════════════════════════════
+       EMPTY STATE
+       ═══════════════════════════════════ */
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .empty-state-icon { font-size: 48px; opacity: 0.3; margin-bottom: 16px; }
+    .empty-state-heading { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .empty-state-sub { font-size: 14px; color: #757575; font-weight: 300; margin-bottom: 24px; }
+
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .btn-reset:hover { background: #1A1A1A; }
+
+    /* ═══════════════════════════════════
+       ACTIVE FILTERS CHIPS
+       ═══════════════════════════════════ */
+
+    .active-filters {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border: 1px solid #E0E0E0;
+      font-size: 12px;
+      font-weight: 500;
+      color: #000;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-chip:hover { border-color: #000; background: #F5F5F5; }
+
+    .filter-chip .chip-x {
+      font-size: 14px;
+      color: #9E9E9E;
+      line-height: 1;
+      transition: color 0.15s ease;
+    }
+
+    .filter-chip:hover .chip-x { color: #000; }
+
+    /* ═══════════════════════════════════
+       PAGINATION
+       ═══════════════════════════════════ */
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      margin-top: 60px;
+    }
+
+    .pg-btn {
+      width: 42px; height: 42px;
+      border: 1px solid #E0E0E0;
+      background: #fff;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      color: #616161;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .pg-btn:hover:not(:disabled) { border-color: #000; color: #000; }
+    .pg-btn.active { background: #000; border-color: #000; color: #fff; font-weight: 700; }
+    .pg-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+    .pg-sep {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      color: #9E9E9E; font-size: 14px;
+    }
+
+    /* ═══════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════ */
+
+    .footer {
+      background: #000;
+      color: #fff;
+      padding: 72px 0 36px;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    }
+
+    .footer-logo-text {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      margin-bottom: 12px;
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: #616161;
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 280px;
+    }
+
+    .footer-col-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .footer-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .f-link {
+      font-size: 13px;
+      color: #616161;
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s ease;
+    }
+
+    .f-link:hover { color: #fff; }
+
+    .footer-bottom-bar {
+      border-top: 1px solid #1A1A1A;
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy { font-size: 11px; color: #424242; font-weight: 300; }
+
+    .footer-legal { display: flex; gap: 20px; }
+
+    .footer-legal a {
+      font-size: 11px;
+      color: #424242;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal a:hover { color: #616161; }
+
+    /* ═══════════════════════════════════
+       SCROLL REVEAL
+       ═══════════════════════════════════ */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .p-card { transform: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════ -->
+
+  <div class="announce-bar">
+    Free shipping on orders above ₹999
+    <span class="sep">·</span>
+    30-day easy returns
+    <span class="sep">·</span>
+    Premium quality guaranteed
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════ -->
+
+  <nav class="navbar" id="mainNavbar">
+    <div class="nav-main-row">
+      <div class="container">
+        <div class="nav-flex">
+
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <a href="index.html" class="nav-logo">NOVA<span class="w-light">STORE</span></a>
+
+          <div class="nav-search-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search products..."
+              autocomplete="off"
+              aria-label="Search products"
+            >
+          </div>
+
+          <div class="nav-actions">
+            <button class="nav-icon-btn" aria-label="Wishlist">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+
+            <button class="nav-icon-btn" aria-label="Account">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </button>
+
+            <a href="cart.html" class="nav-icon-btn" aria-label="Shopping cart">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              <span class="cart-count" id="cartBadge" aria-live="polite"></span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Bar -->
+    <div class="cat-bar">
+      <div class="container">
+        <nav class="cat-bar-inner" aria-label="Categories">
+          <a href="products.html"                 class="cat-link" id="catAll">All Products</a>
+          <a href="products.html?cat=electronics" class="cat-link" id="catElec">Electronics</a>
+          <a href="products.html?cat=fashion"     class="cat-link" id="catFash">Fashion</a>
+          <a href="products.html?cat=home"        class="cat-link" id="catHome">Home &amp; Living</a>
+          <a href="products.html?cat=beauty"      class="cat-link" id="catBeau">Beauty</a>
+          <a href="products.html?cat=accessories" class="cat-link" id="catAcc">Accessories</a>
+          <a href="products.html?cat=fitness"     class="cat-link" id="catFit">Fitness</a>
+          <a href="products.html?cat=stationery"  class="cat-link" id="catStat">Stationery</a>
+        </nav>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════════
+       SIDE MENU
+       ═══════════════════════════════════ -->
+
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <aside class="side-menu" id="sideMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="sm-header">
+      <span class="sm-logo">NOVA STORE</span>
+      <button class="sm-close" id="smClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sm-nav">
+      <a href="index.html"                         class="sm-link"><span>Home</span><span class="arrow">→</span></a>
+      <a href="products.html"                      class="sm-link"><span>All Products</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=electronics"      class="sm-link"><span>Electronics</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=fashion"          class="sm-link"><span>Fashion</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=home"             class="sm-link"><span>Home &amp; Living</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=beauty"           class="sm-link"><span>Beauty</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=accessories"      class="sm-link"><span>Accessories</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=fitness"          class="sm-link"><span>Fitness</span><span class="arrow">→</span></a>
+      <a href="cart.html"                          class="sm-link"><span>Cart</span><span class="arrow">→</span></a>
+    </nav>
+    <div class="sm-foot">© 2026 NOVA STORE · Designed with intention</div>
+  </aside>
+
+
+  <!-- ═══════════════════════════════════
+       MOBILE FILTER DRAWER
+       ═══════════════════════════════════ -->
+
+  <div class="filter-drawer-overlay" id="filterDrawerOverlay"></div>
+
+  <div class="filter-drawer" id="filterDrawer" role="dialog" aria-label="Filters">
+    <div class="filter-drawer-header">
+      <span class="filter-drawer-title">Filter &amp; Sort</span>
+      <button class="filter-drawer-close" id="filterDrawerClose" aria-label="Close filters">✕</button>
+    </div>
+
+    <div class="filter-drawer-body">
+
+      <!-- Sort (mobile) -->
+      <div class="filter-section">
+        <h4 class="filter-heading">Sort By</h4>
+        <div class="cat-btn-list">
+          <button class="cat-filter-btn active" data-sort="default">Featured</button>
+          <button class="cat-filter-btn" data-sort="price-low">Price: Low to High</button>
+          <button class="cat-filter-btn" data-sort="price-high">Price: High to Low</button>
+          <button class="cat-filter-btn" data-sort="rating">Highest Rated</button>
+          <button class="cat-filter-btn" data-sort="newest">Newest First</button>
+        </div>
+      </div>
+
+      <!-- Category (mobile) -->
+      <div class="filter-section">
+        <h4 class="filter-heading">Category</h4>
+        <div class="cat-btn-list" id="mobileCatList">
+          <button class="cat-filter-btn active" data-category="all">All Products</button>
+          <button class="cat-filter-btn" data-category="electronics">Electronics</button>
+          <button class="cat-filter-btn" data-category="fashion">Fashion</button>
+          <button class="cat-filter-btn" data-category="home">Home &amp; Living</button>
+          <button class="cat-filter-btn" data-category="beauty">Beauty</button>
+          <button class="cat-filter-btn" data-category="accessories">Accessories</button>
+          <button class="cat-filter-btn" data-category="fitness">Fitness</button>
+          <button class="cat-filter-btn" data-category="stationery">Stationery</button>
+        </div>
+      </div>
+
+      <!-- Price (mobile) -->
+      <div class="filter-section">
+        <h4 class="filter-heading">Price Range</h4>
+        <div class="check-list">
+          <label class="check-label"><input type="checkbox" data-price="under500"> Under ₹500</label>
+          <label class="check-label"><input type="checkbox" data-price="500-1000"> ₹500 — ₹1,000</label>
+          <label class="check-label"><input type="checkbox" data-price="1000-2500"> ₹1,000 — ₹2,500</label>
+          <label class="check-label"><input type="checkbox" data-price="above2500"> Above ₹2,500</label>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="filter-drawer-footer">
+      <button class="btn-clear-drawer" id="drawerClearBtn">Clear All</button>
+      <button class="btn-apply-filters" id="drawerApplyBtn">Apply Filters</button>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+       PAGE HEADER
+       ═══════════════════════════════════ -->
+
+  <header class="page-hdr">
+    <div class="container">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="breadcrumbCurrent">All Products</span>
+      </nav>
+
+      <h1 class="page-hdr-heading" id="pageTitle">
+        All <span class="serif-word">Products</span>
+      </h1>
+      <p class="page-hdr-sub" id="pageSubtitle">Showing all products</p>
+
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════
+       MAIN — SIDEBAR + GRID
+       ═══════════════════════════════════ -->
+
+  <main class="products-page">
+    <div class="container">
+
+      <!-- Mobile filter toggle -->
+      <div class="mobile-top-bar">
+        <button class="mobile-filter-btn" id="mobileFilterBtn" aria-label="Open filters">
+          <span class="mobile-filter-icon">⊞</span>
+          Filter &amp; Sort
+          <span class="filter-count-badge" id="filterCountBadge"></span>
+        </button>
+      </div>
+
+      <div class="page-layout">
+
+        <!-- ─── FILTER SIDEBAR (Desktop) ─── -->
+        <aside class="filter-sidebar" id="filterSidebar" aria-label="Product filters">
+
+          <!-- Category -->
+          <div class="filter-section">
+            <h3 class="filter-heading">Category</h3>
+            <div class="cat-btn-list" id="desktopCatList">
+              <button class="cat-filter-btn active" data-category="all">All Products</button>
+              <button class="cat-filter-btn" data-category="electronics">Electronics</button>
+              <button class="cat-filter-btn" data-category="fashion">Fashion</button>
+              <button class="cat-filter-btn" data-category="home">Home &amp; Living</button>
+              <button class="cat-filter-btn" data-category="beauty">Beauty</button>
+              <button class="cat-filter-btn" data-category="accessories">Accessories</button>
+              <button class="cat-filter-btn" data-category="fitness">Fitness</button>
+              <button class="cat-filter-btn" data-category="stationery">Stationery</button>
+            </div>
+          </div>
+
+          <!-- Price Range -->
+          <div class="filter-section">
+            <h3 class="filter-heading">Price Range</h3>
+            <div class="check-list" id="desktopPriceList">
+              <label class="check-label"><input type="checkbox" data-price="under500"> Under ₹500</label>
+              <label class="check-label"><input type="checkbox" data-price="500-1000"> ₹500 — ₹1,000</label>
+              <label class="check-label"><input type="checkbox" data-price="1000-2500"> ₹1,000 — ₹2,500</label>
+              <label class="check-label"><input type="checkbox" data-price="above2500"> Above ₹2,500</label>
+            </div>
+          </div>
+
+          <!-- Rating -->
+          <div class="filter-section">
+            <h3 class="filter-heading">Customer Rating</h3>
+            <div class="check-list" id="desktopRatingList">
+              <label class="check-label">
+                <input type="checkbox" data-rating="4.5">
+                <span><span class="stars-gold">★★★★★</span> 4.5 &amp; above</span>
+              </label>
+              <label class="check-label">
+                <input type="checkbox" data-rating="4.0">
+                <span><span class="stars-gold">★★★★</span>☆ 4.0 &amp; above</span>
+              </label>
+              <label class="check-label">
+                <input type="checkbox" data-rating="3.0">
+                <span><span class="stars-gold">★★★</span>☆☆ 3.0 &amp; above</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Discount -->
+          <div class="filter-section">
+            <h3 class="filter-heading">Discount</h3>
+            <div class="check-list" id="desktopDiscountList">
+              <label class="check-label"><input type="checkbox" data-discount="10"> 10% &amp; above</label>
+              <label class="check-label"><input type="checkbox" data-discount="25"> 25% &amp; above</label>
+              <label class="check-label"><input type="checkbox" data-discount="40"> 40% &amp; above</label>
+            </div>
+          </div>
+
+          <button class="clear-filters" id="clearAllBtn" aria-label="Clear all filters">
+            ✕ Clear All Filters
+          </button>
+
+        </aside>
+
+        <!-- ─── PRODUCTS SECTION ─── -->
+        <div>
+
+          <!-- Active filter chips -->
+          <div class="active-filters" id="activeFilterChips"></div>
+
+          <!-- Sort bar -->
+          <div class="sort-bar reveal">
+
+            <p class="results-text">
+              <strong id="resultsCount">0</strong> products found
+            </p>
+
+            <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+
+              <div class="sort-right">
+                <span class="sort-label">Sort by</span>
+                <select class="sort-select" id="sortSelect" aria-label="Sort products">
+                  <option value="default">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="newest">Newest First</option>
+                  <option value="discount">Biggest Discount</option>
+                </select>
+              </div>
+
+              <div class="view-toggle" aria-label="View mode">
+                <button class="view-btn active" id="viewGrid" title="Grid view" aria-pressed="true">⊞</button>
+                <button class="view-btn" id="viewList" title="List view" aria-pressed="false">☰</button>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <div class="products-grid-3" id="productsGrid" aria-live="polite" aria-label="Products">
+            <!-- Populated by JS -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="pagination" id="pagination" aria-label="Pagination"></div>
+
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════ -->
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-logo-text">NOVA STORE</p>
+          <p class="footer-desc">Curated excellence for the modern lifestyle. Premium products, thoughtful design.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Shop</h4>
+          <nav class="footer-links-col">
+            <a href="products.html"                    class="f-link">All Products</a>
+            <a href="products.html?cat=electronics"    class="f-link">Electronics</a>
+            <a href="products.html?cat=fashion"        class="f-link">Fashion</a>
+            <a href="products.html?cat=home"           class="f-link">Home &amp; Living</a>
+            <a href="products.html?cat=beauty"         class="f-link">Beauty</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Customer Care</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="f-link">Contact Us</a>
+            <a href="#" class="f-link">Shipping Info</a>
+            <a href="#" class="f-link">Returns</a>
+            <a href="#" class="f-link">FAQ</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Company</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="f-link">About Us</a>
+            <a href="#" class="f-link">Careers</a>
+            <a href="#" class="f-link">Privacy Policy</a>
+            <a href="#" class="f-link">Terms</a>
+          </nav>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">© 2026 NOVA STORE. All rights reserved.</p>
+        <nav class="footer-legal">
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════ -->
+
+  <script src="js/main.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ═══════════════════════════════════
+       HELPERS
+       ═══════════════════════════════════ */
+
+    function fmt(n) {
+      return '₹' + Number(n).toLocaleString('en-IN');
+    }
+
+    function calcDiscount(orig, curr) {
+      if (!orig || orig <= curr) return 0;
+      return Math.round(((orig - curr) / orig) * 100);
+    }
+
+    function stars(rating) {
+      var full  = Math.floor(rating);
+      var empty = 5 - full;
+      return '★'.repeat(full) + '☆'.repeat(empty);
+    }
+
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+
+    function debounce(fn, ms) {
+      var t;
+      return function () {
+        var args = arguments;
+        var ctx  = this;
+        clearTimeout(t);
+        t = setTimeout(function () { fn.apply(ctx, args); }, ms);
+      };
+    }
+
+
+    /* ═══════════════════════════════════
+       STATE
+       ═══════════════════════════════════ */
+
+    var PRODUCTS = [];
+
+    var state = {
+      category:   'all',
+      sort:       'default',
+      search:     '',
+      priceRanges: [],
+      minRating:   0,
+      minDiscount: 0,
+      page:        1,
+      perPage:     9,
+      viewMode:    'grid'
+    };
+
+    var allFiltered = [];
+
+
+    /* ═══════════════════════════════════
+       NAVBAR SCROLL
+       ═══════════════════════════════════ */
+
+    var navbar = document.getElementById('mainNavbar');
+
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    }, { passive: true });
+
+
+    /* ═══════════════════════════════════
+       SIDE MENU
+       ═══════════════════════════════════ */
+
+    var hamburger  = document.getElementById('hamburgerBtn');
+    var sideMenu   = document.getElementById('sideMenu');
+    var menuOverlay= document.getElementById('menuOverlay');
+    var smClose    = document.getElementById('smClose');
+    var menuOpen   = false;
+
+    function openSideMenu() {
+      sideMenu.classList.add('open');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      hamburger.setAttribute('aria-expanded', 'true');
+      menuOpen = true;
+      smClose.focus();
+    }
+
+    function closeSideMenu() {
+      sideMenu.classList.remove('open');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      hamburger.setAttribute('aria-expanded', 'false');
+      menuOpen = false;
+    }
+
+    hamburger.addEventListener('click', openSideMenu);
+    smClose.addEventListener('click', closeSideMenu);
+    menuOverlay.addEventListener('click', closeSideMenu);
+
+    sideMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', closeSideMenu);
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        if (menuOpen) closeSideMenu();
+        if (filterDrawerOpen) closeFilterDrawer();
+      }
+    });
+
+
+    /* ═══════════════════════════════════
+       FILTER DRAWER (Mobile)
+       ═══════════════════════════════════ */
+
+    var filterDrawerOverlay = document.getElementById('filterDrawerOverlay');
+    var filterDrawer        = document.getElementById('filterDrawer');
+    var filterDrawerClose   = document.getElementById('filterDrawerClose');
+    var mobileFilterBtn     = document.getElementById('mobileFilterBtn');
+    var drawerClearBtn      = document.getElementById('drawerClearBtn');
+    var drawerApplyBtn      = document.getElementById('drawerApplyBtn');
+    var filterDrawerOpen    = false;
+
+    function openFilterDrawer() {
+      filterDrawer.classList.add('open');
+      filterDrawerOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      filterDrawerOpen = true;
+    }
+
+    function closeFilterDrawer() {
+      filterDrawer.classList.remove('open');
+      filterDrawerOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+      filterDrawerOpen = false;
+    }
+
+    mobileFilterBtn.addEventListener('click', openFilterDrawer);
+    filterDrawerClose.addEventListener('click', closeFilterDrawer);
+    filterDrawerOverlay.addEventListener('click', closeFilterDrawer);
+
+    drawerApplyBtn.addEventListener('click', function () {
+      /* Sync mobile sort */
+      var activeSort = filterDrawer.querySelector('[data-sort].active');
+      if (activeSort) state.sort = activeSort.dataset.sort;
+
+      /* Sync mobile category */
+      var activeCat = filterDrawer.querySelector('[data-category].active');
+      if (activeCat) state.category = activeCat.dataset.category;
+
+      /* Sync mobile price */
+      state.priceRanges = [];
+      filterDrawer.querySelectorAll('[data-price]:checked').forEach(function (cb) {
+        state.priceRanges.push(cb.dataset.price);
+      });
+
+      state.page = 1;
+      applyFilters();
+      closeFilterDrawer();
+    });
+
+    drawerClearBtn.addEventListener('click', function () {
+      resetAllFilters();
+      closeFilterDrawer();
+    });
+
+    /* Mobile sort buttons */
+    filterDrawer.querySelectorAll('[data-sort]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        filterDrawer.querySelectorAll('[data-sort]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+
+    /* Mobile category buttons */
+    document.getElementById('mobileCatList').querySelectorAll('[data-category]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('mobileCatList').querySelectorAll('[data-category]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+      });
+    });
+
+
+    /* ═══════════════════════════════════
+       DESKTOP FILTERS
+       ═══════════════════════════════════ */
+
+    /* Category buttons */
+    document.getElementById('desktopCatList').querySelectorAll('[data-category]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('desktopCatList').querySelectorAll('[data-category]').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state.category = btn.dataset.category;
+        state.page     = 1;
+        applyFilters();
+        syncCategoryBar(state.category);
+      });
+    });
+
+    /* Price checkboxes */
+    document.getElementById('desktopPriceList').querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        state.priceRanges = [];
+        document.getElementById('desktopPriceList').querySelectorAll('input:checked').forEach(function (c) {
+          state.priceRanges.push(c.dataset.price);
+        });
+        state.page = 1;
+        applyFilters();
+      });
+    });
+
+    /* Rating checkboxes */
+    document.getElementById('desktopRatingList').querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        /* Highest checked rating wins */
+        var maxRating = 0;
+        document.getElementById('desktopRatingList').querySelectorAll('input:checked').forEach(function (c) {
+          var v = parseFloat(c.dataset.rating);
+          if (v > maxRating) maxRating = v;
+        });
+        state.minRating = maxRating;
+        state.page = 1;
+        applyFilters();
+      });
+    });
+
+    /* Discount checkboxes */
+    document.getElementById('desktopDiscountList').querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        var maxDisc = 0;
+        document.getElementById('desktopDiscountList').querySelectorAll('input:checked').forEach(function (c) {
+          var v = parseFloat(c.dataset.discount);
+          if (v > maxDisc) maxDisc = v;
+        });
+        state.minDiscount = maxDisc;
+        state.page = 1;
+        applyFilters();
+      });
+    });
+
+    /* Sort select */
+    document.getElementById('sortSelect').addEventListener('change', function (e) {
+      state.sort = e.target.value;
+      state.page = 1;
+      applyFilters();
+    });
+
+    /* Clear all */
+    document.getElementById('clearAllBtn').addEventListener('click', resetAllFilters);
+
+    /* View toggle */
+    document.getElementById('viewGrid').addEventListener('click', function () {
+      state.viewMode = 'grid';
+      document.getElementById('viewGrid').classList.add('active');
+      document.getElementById('viewList').classList.remove('active');
+      document.getElementById('viewGrid').setAttribute('aria-pressed', 'true');
+      document.getElementById('viewList').setAttribute('aria-pressed', 'false');
+      document.getElementById('productsGrid').classList.remove('list-view');
+    });
+
+    document.getElementById('viewList').addEventListener('click', function () {
+      state.viewMode = 'list';
+      document.getElementById('viewList').classList.add('active');
+      document.getElementById('viewGrid').classList.remove('active');
+      document.getElementById('viewList').setAttribute('aria-pressed', 'true');
+      document.getElementById('viewGrid').setAttribute('aria-pressed', 'false');
+      document.getElementById('productsGrid').classList.add('list-view');
+    });
+
+    /* Search input */
+    document.getElementById('searchInput').addEventListener('input', debounce(function (e) {
+      state.search = e.target.value.trim().toLowerCase();
+      state.page   = 1;
+      applyFilters();
+    }, 280));
+
+    /* Search — Enter key on products page = stay on page and filter */
+    document.getElementById('searchInput').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+
+    /* / shortcut → focus search */
+    document.addEventListener('keydown', function (e) {
+      if (e.key === '/' && !e.target.matches('input, textarea, select')) {
+        e.preventDefault();
+        document.getElementById('searchInput').focus();
+      }
+    });
+
+
+    /* ═══════════════════════════════════
+       RESET FILTERS
+       ═══════════════════════════════════ */
+
+    function resetAllFilters() {
+      state.category    = 'all';
+      state.sort        = 'default';
+      state.search      = '';
+      state.priceRanges = [];
+      state.minRating   = 0;
+      state.minDiscount = 0;
+      state.page        = 1;
+
+      /* UI reset */
+      document.getElementById('searchInput').value = '';
+      document.getElementById('sortSelect').value  = 'default';
+
+      document.querySelectorAll('[data-category]').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.category === 'all');
+      });
+
+      document.querySelectorAll('input[type="checkbox"]').forEach(function (cb) {
+        cb.checked = false;
+      });
+
+      syncCategoryBar('all');
+      applyFilters();
+    }
+
+
+    /* ═══════════════════════════════════
+       FILTER + SORT LOGIC
+       ═══════════════════════════════════ */
+
+    function filterProducts() {
+      var results = PRODUCTS.slice();
+
+      /* Category */
+      if (state.category && state.category !== 'all') {
+        results = results.filter(function (p) { return p.category === state.category; });
+      }
+
+      /* Search */
+      if (state.search) {
+        var q = state.search;
+        results = results.filter(function (p) {
+          return (p.name && p.name.toLowerCase().includes(q)) ||
+                 (p.categoryName && p.categoryName.toLowerCase().includes(q)) ||
+                 (p.description && p.description.toLowerCase().includes(q));
+        });
+      }
+
+      /* Price */
+      if (state.priceRanges.length > 0) {
+        results = results.filter(function (p) {
+          return state.priceRanges.some(function (r) {
+            if (r === 'under500')   return p.price < 500;
+            if (r === '500-1000')   return p.price >= 500  && p.price < 1000;
+            if (r === '1000-2500')  return p.price >= 1000 && p.price < 2500;
+            if (r === 'above2500')  return p.price >= 2500;
+            return false;
+          });
+        });
+      }
+
+      /* Rating */
+      if (state.minRating > 0) {
+        results = results.filter(function (p) { return (p.rating || 0) >= state.minRating; });
+      }
+
+      /* Discount */
+      if (state.minDiscount > 0) {
+        results = results.filter(function (p) {
+          return calcDiscount(p.originalPrice, p.price) >= state.minDiscount;
+        });
+      }
+
+      /* Sort */
+      switch (state.sort) {
+        case 'price-low':  results.sort(function (a,b) { return a.price - b.price; }); break;
+        case 'price-high': results.sort(function (a,b) { return b.price - a.price; }); break;
+        case 'rating':     results.sort(function (a,b) { return (b.rating||0) - (a.rating||0); }); break;
+        case 'newest':     results.sort(function (a,b) { return b.id - a.id; }); break;
+        case 'discount':
+          results.sort(function (a,b) {
+            return calcDiscount(b.originalPrice, b.price) - calcDiscount(a.originalPrice, a.price);
+          });
+          break;
+      }
+
+      return results;
+    }
+
+
+    /* ═══════════════════════════════════
+       APPLY FILTERS → RENDER
+       ═══════════════════════════════════ */
+
+    function applyFilters() {
+      allFiltered = filterProducts();
+      renderProducts();
+      renderPagination();
+      updatePageHeader();
+      renderActiveChips();
+      updateFilterBadge();
+    }
+
+
+    /* ═══════════════════════════════════
+       PRODUCT CARD BUILDER
+       ═══════════════════════════════════ */
+
+    function buildCard(product) {
+      var discount    = calcDiscount(product.originalPrice, product.price);
+      var hasDiscount = discount > 0;
+
+      var badgeHtml = product.badge
+        ? '<span class="p-badge ' + (product.badge === 'SALE' ? 'sale' : product.badge === 'BESTSELLER' ? 'best' : '') + '">' + product.badge + '</span>'
+        : '';
+
+      var discHtml = hasDiscount
+        ? '<span class="price-was">' + fmt(product.originalPrice) + '</span>' +
+          '<span class="price-off">' + discount + '% OFF</span>'
+        : '';
+
+      return (
+        '<article class="p-card" aria-label="' + product.name + '">' +
+          '<div class="p-card-img">' +
+            '<div class="p-card-placeholder">📦</div>' +
+            badgeHtml +
+            '<button class="p-wish-btn" data-wishlist-id="' + product.id + '" onclick="event.stopPropagation();toggleWishlist(' + product.id + ',this)" aria-label="Wishlist" aria-pressed="false">' +
+              (isWishlisted(product.id) ? '❤️' : '🤍') +
+            '</button>' +
+            '<button class="p-add-btn" onclick="event.stopPropagation();addToCart(' + product.id + ')" aria-label="Add to cart">Add to Cart</button>' +
+          '</div>' +
+          '<a href="product.html?id=' + product.id + '" style="display:block;text-decoration:none;color:inherit;">' +
+            '<p class="p-card-cat">' + product.categoryName + '</p>' +
+            '<p class="p-card-name">' + product.name + '</p>' +
+            '<div class="p-card-stars" aria-label="' + product.rating + ' stars">' +
+              '<span class="stars-val">' + stars(product.rating) + '</span>' +
+              '<span class="reviews-val">(' + (product.reviews || 0) + ')</span>' +
+            '</div>' +
+            '<div class="p-card-price">' +
+              '<span class="price-now">' + fmt(product.price) + '</span>' +
+              discHtml +
+            '</div>' +
+          '</a>' +
+        '</article>'
+      );
+    }
+
+
+    /* ═══════════════════════════════════
+       RENDER PRODUCTS
+       ═══════════════════════════════════ */
+
+    function renderProducts() {
+      var grid   = document.getElementById('productsGrid');
+      var start  = (state.page - 1) * state.perPage;
+      var end    = start + state.perPage;
+      var paged  = allFiltered.slice(start, end);
+
+      if (paged.length === 0) {
+        grid.innerHTML =
+          '<div class="empty-state">' +
+            '<div class="empty-state-icon">🔍</div>' +
+            '<h3 class="empty-state-heading">No products found</h3>' +
+            '<p class="empty-state-sub">Try adjusting your filters or search query</p>' +
+            '<button class="btn-reset" onclick="resetAllFilters()">Clear All Filters</button>' +
+          '</div>';
+        return;
+      }
+
+      grid.innerHTML = paged.map(buildCard).join('');
+    }
+
+
+    /* ═══════════════════════════════════
+       PAGINATION
+       ═══════════════════════════════════ */
+
+    function renderPagination() {
+      var pag       = document.getElementById('pagination');
+      var totalPages= Math.ceil(allFiltered.length / state.perPage);
+
+      if (totalPages <= 1) { pag.innerHTML = ''; return; }
+
+      var html = '';
+
+      /* Prev */
+      html += '<button class="pg-btn" onclick="goPage(' + (state.page-1) + ')" ' + (state.page === 1 ? 'disabled' : '') + ' aria-label="Previous page">‹</button>';
+
+      /* Pages */
+      for (var i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= state.page - 1 && i <= state.page + 1)) {
+          html += '<button class="pg-btn ' + (i === state.page ? 'active' : '') + '" onclick="goPage(' + i + ')" aria-label="Page ' + i + '">' + i + '</button>';
+        } else if (i === state.page - 2 || i === state.page + 2) {
+          html += '<span class="pg-sep">…</span>';
+        }
+      }
+
+      /* Next */
+      html += '<button class="pg-btn" onclick="goPage(' + (state.page+1) + ')" ' + (state.page === totalPages ? 'disabled' : '') + ' aria-label="Next page">›</button>';
+
+      pag.innerHTML = html;
+    }
+
+    window.goPage = function (n) {
+      var totalPages = Math.ceil(allFiltered.length / state.perPage);
+      if (n < 1 || n > totalPages) return;
+      state.page = n;
+      renderProducts();
+      renderPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+
+    /* ═══════════════════════════════════
+       PAGE HEADER UPDATE
+       ═══════════════════════════════════ */
+
+    var CAT_NAMES = {
+      all: 'All',
+      electronics: 'Electronics',
+      fashion: 'Fashion',
+      home: 'Home & Living',
+      beauty: 'Beauty',
+      accessories: 'Accessories',
+      fitness: 'Fitness',
+      stationery: 'Stationery'
+    };
+
+    function updatePageHeader() {
+      var count   = allFiltered.length;
+      var catName = CAT_NAMES[state.category] || 'All';
+
+      /* Results count */
+      document.getElementById('resultsCount').textContent = count;
+
+      /* Page title */
+      var titleEl = document.getElementById('pageTitle');
+      if (state.category === 'all') {
+        titleEl.innerHTML = 'All <span class="serif-word">Products</span>';
+      } else {
+        titleEl.innerHTML = catName + ' <span class="serif-word">Collection</span>';
+      }
+
+      /* Breadcrumb */
+      document.getElementById('breadcrumbCurrent').textContent =
+        state.category === 'all' ? 'All Products' : catName;
+
+      /* Subtitle */
+      document.getElementById('pageSubtitle').textContent =
+        'Showing ' + count + ' product' + (count !== 1 ? 's' : '');
+
+      /* Page title tag */
+      document.title = (state.category === 'all' ? 'All Products' : catName + ' Collection') + ' — NOVA STORE';
+    }
+
+
+    /* ═══════════════════════════════════
+       ACTIVE FILTER CHIPS
+       ═══════════════════════════════════ */
+
+    function renderActiveChips() {
+      var chips = document.getElementById('activeFilterChips');
+      var html  = '';
+
+      if (state.category && state.category !== 'all') {
+        html += makeChip('Category: ' + (CAT_NAMES[state.category] || state.category), 'cat');
+      }
+
+      state.priceRanges.forEach(function (r) {
+        var label = r === 'under500' ? 'Under ₹500' :
+                    r === '500-1000' ? '₹500—₹1K' :
+                    r === '1000-2500' ? '₹1K—₹2.5K' :
+                    r === 'above2500' ? 'Above ₹2.5K' : r;
+        html += makeChip('Price: ' + label, 'price-' + r);
+      });
+
+      if (state.minRating > 0) html += makeChip('Rating: ' + state.minRating + '+', 'rating');
+      if (state.minDiscount > 0) html += makeChip('Discount: ' + state.minDiscount + '%+', 'discount');
+      if (state.search) html += makeChip('Search: "' + state.search + '"', 'search');
+
+      chips.innerHTML = html;
+
+      /* Chip remove handlers */
+      chips.querySelectorAll('[data-chip]').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var key = chip.dataset.chip;
+
+          if (key === 'cat') {
+            state.category = 'all';
+            document.querySelectorAll('[data-category]').forEach(function (b) {
+              b.classList.toggle('active', b.dataset.category === 'all');
+            });
+            syncCategoryBar('all');
+          } else if (key.startsWith('price-')) {
+            var range = key.replace('price-', '');
+            state.priceRanges = state.priceRanges.filter(function (r) { return r !== range; });
+            document.querySelectorAll('input[data-price="' + range + '"]').forEach(function (cb) { cb.checked = false; });
+          } else if (key === 'rating') {
+            state.minRating = 0;
+            document.querySelectorAll('input[data-rating]').forEach(function (cb) { cb.checked = false; });
+          } else if (key === 'discount') {
+            state.minDiscount = 0;
+            document.querySelectorAll('input[data-discount]').forEach(function (cb) { cb.checked = false; });
+          } else if (key === 'search') {
+            state.search = '';
+            document.getElementById('searchInput').value = '';
+          }
+
+          state.page = 1;
+          applyFilters();
+        });
+      });
+    }
+
+    function makeChip(label, key) {
+      return '<button class="filter-chip" data-chip="' + key + '" aria-label="Remove filter: ' + label + '">' +
+               label + '<span class="chip-x">✕</span>' +
+             '</button>';
+    }
+
+
+    /* ═══════════════════════════════════
+       FILTER COUNT BADGE (Mobile)
+       ═══════════════════════════════════ */
+
+    function updateFilterBadge() {
+      var count = 0;
+      if (state.category && state.category !== 'all') count++;
+      count += state.priceRanges.length;
+      if (state.minRating > 0)   count++;
+      if (state.minDiscount > 0) count++;
+      if (state.search)          count++;
+
+      var badge = document.getElementById('filterCountBadge');
+      badge.textContent = count;
+      badge.classList.toggle('show', count > 0);
+    }
+
+
+    /* ═══════════════════════════════════
+       SYNC CATEGORY BAR
+       ═══════════════════════════════════ */
+
+    var CAT_LINK_MAP = {
+      'all':         'catAll',
+      'electronics': 'catElec',
+      'fashion':     'catFash',
+      'home':        'catHome',
+      'beauty':      'catBeau',
+      'accessories': 'catAcc',
+      'fitness':     'catFit',
+      'stationery':  'catStat'
+    };
+
+    function syncCategoryBar(cat) {
+      document.querySelectorAll('.cat-bar-inner .cat-link').forEach(function (link) {
+        link.classList.remove('active');
+      });
+      var id  = CAT_LINK_MAP[cat] || 'catAll';
+      var el  = document.getElementById(id);
+      if (el) el.classList.add('active');
+    }
+
+
+    /* ═══════════════════════════════════
+       WISHLIST + CART (safe wrappers)
+       ═══════════════════════════════════ */
+
+    function isWishlisted(id) {
+      try {
+        var ns = window.NovaStore;
+        return ns && ns.Wishlist ? ns.Wishlist.has(id) : false;
+      } catch (e) { return false; }
+    }
+
+    window.toggleWishlist = function (id, btn) {
+      try {
+        var ns = window.NovaStore;
+        if (ns && ns.Wishlist) {
+          ns.Wishlist.toggle(id);
+          var has = ns.Wishlist.has(id);
+          if (btn) {
+            btn.innerHTML    = has ? '❤️' : '🤍';
+            btn.ariaPressed  = String(has);
+            btn.classList.toggle('active', has);
+          }
+        }
+      } catch (e) {}
+    };
+
+    window.addToCart = function (id, qty) {
+      try {
+        var ns = window.NovaStore;
+        if (ns && ns.Cart) {
+          ns.Cart.add(id, qty || 1);
+          updateCartBadge();
+        }
+      } catch (e) {}
+    };
+
+    window.resetAllFilters = resetAllFilters;
+
+    function updateCartBadge() {
+      try {
+        var cart  = JSON.parse(localStorage.getItem('nova_cart') || '[]');
+        var count = cart.reduce(function (s, i) { return s + (i.quantity || 1); }, 0);
+        var badge = document.getElementById('cartBadge');
+        if (badge) {
+          badge.textContent   = count > 99 ? '99+' : count;
+          badge.style.display = count > 0 ? 'flex' : 'none';
+        }
+      } catch (e) {}
+    }
+
+    window.addEventListener('nova:cart:change', updateCartBadge);
+
+
+    /* ═══════════════════════════════════
+       SCROLL REVEAL
+       ═══════════════════════════════════ */
+
+    function initReveal() {
+      if (!('IntersectionObserver' in window)) {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('revealed'); });
+        return;
+      }
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+    }
+
+
+    /* ═══════════════════════════════════
+       BOOTSTRAP
+       ═══════════════════════════════════ */
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+      updateCartBadge();
+
+      /* Get products from main.js or inline fallback */
+      if (window.NovaStore && window.NovaStore.PRODUCTS) {
+        PRODUCTS = window.NovaStore.PRODUCTS;
+      } else {
+        /* Inline fallback if main.js not loaded */
+        PRODUCTS = [];
+      }
+
+      /* Read URL params */
+      var urlCat = getParam('cat');
+      var urlQ   = getParam('q');
+
+      if (urlCat) {
+        state.category = urlCat;
+
+        /* Sync desktop cat buttons */
+        document.getElementById('desktopCatList').querySelectorAll('[data-category]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.category === urlCat);
+        });
+
+        /* Sync mobile cat buttons */
+        document.getElementById('mobileCatList').querySelectorAll('[data-category]').forEach(function (btn) {
+          btn.classList.toggle('active', btn.dataset.category === urlCat);
+        });
+
+        syncCategoryBar(urlCat);
+      } else {
+        syncCategoryBar('all');
+      }
+
+      if (urlQ) {
+        state.search = urlQ.toLowerCase();
+        document.getElementById('searchInput').value = urlQ;
+      }
+
+      /* Initial render */
+      applyFilters();
+
+      /* Scroll reveal */
+      requestAnimationFrame(initReveal);
+
+      console.log(
+        '%c✨ NOVA STORE — Products Page',
+        'color:#000;font-size:13px;font-weight:800;letter-spacing:2px;'
+      );
+    });
+
+  })();
+  </script>
+
+</body>
+</html>

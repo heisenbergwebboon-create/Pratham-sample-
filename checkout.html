@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — NOVA STORE</title>
+  <meta name="theme-color" content="#000000">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav style="background: #FFFFFF; border-bottom: 1px solid #EEEEEE; padding: 20px 0; position: sticky; top: 0; z-index: 100;">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+        <a href="index.html" class="nav-logo">
+          <span class="nova">NOVA</span><span class="store">STORE</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #424242;">
+          <span style="font-size: 16px;">🔒</span>
+          <span style="letter-spacing: 0.05em;">Secure Checkout</span>
+        </div>
+        <a href="cart.html" style="color: #000; font-size: 13px; font-weight: 500; text-decoration: none; border-bottom: 1px solid #000; padding-bottom: 2px;">← Back to Cart</a>
+      </div>
+    </div>
+  </nav>
+
+  <section style="background: #FAFAFA; padding: 32px 0; border-bottom: 1px solid #EEEEEE;">
+    <div class="container">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; max-width: 700px; margin: 0 auto;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #000; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;">✓</div>
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: #000;">CART</span>
+        </div>
+        <div style="width: 40px; height: 1px; background: #000;"></div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #000; color: #FFF; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;">2</div>
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: #000;">CHECKOUT</span>
+        </div>
+        <div style="width: 40px; height: 1px; background: #E0E0E0;"></div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: #E0E0E0; color: #757575; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700;">3</div>
+          <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.05em; color: #757575;">DONE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding: 60px 0 80px; background: #FFFFFF;">
+    <div class="container">
+      <div id="checkoutContainer"></div>
+    </div>
+  </section>
+
+  <div id="successModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: #FFF; max-width: 500px; width: 100%; padding: 48px 32px; text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 50%; background: #000; color: #FFF; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 36px;">✓</div>
+      <h2 style="font-size: 28px; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.02em;">Order <span class="italic-display">placed!</span></h2>
+      <p style="color: #616161; margin-bottom: 8px; font-size: 15px;">Thank you for shopping with NOVA STORE</p>
+      <div style="background: #FAFAFA; padding: 20px; margin: 32px 0; border: 1px solid #EEEEEE;">
+        <div style="font-size: 11px; letter-spacing: 0.15em; color: #757575; text-transform: uppercase; margin-bottom: 8px;">Order Number</div>
+        <div style="font-size: 20px; font-weight: 700; letter-spacing: 0.05em; color: #000;" id="orderNumber">NV-2026-0001</div>
+      </div>
+      <p style="color: #616161; font-size: 13px; margin-bottom: 32px;">We've sent a confirmation email.<br>Expected delivery: 3-5 business days</p>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+        <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+
+  <footer style="background: #000; color: #FFF; padding: 40px 0; text-align: center;">
+    <div class="container">
+      <p style="font-size: 12px; color: #757575; margin-bottom: 16px;">🔒 Your information is secure and encrypted</p>
+      <p style="margin-top: 24px; font-size: 11px; color: #616161;">© 2026 NOVA STORE. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <style>
+    .checkout-layout { display: grid; grid-template-columns: 1fr; gap: 40px; }
+    @media (min-width: 1024px) {
+      .checkout-layout { grid-template-columns: 1.5fr 1fr !important; gap: 48px !important; align-items: start; }
+    }
+    .form-row-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    @media (min-width: 640px) {
+      .form-row-2 { grid-template-columns: 1fr 1fr !important; }
+    }
+    .checkout-section { background: #FFF; padding: 32px; border: 1px solid #EEEEEE; margin-bottom: 24px; }
+    .payment-option { display: flex; align-items: center; gap: 16px; padding: 20px; border: 1px solid #E0E0E0; cursor: pointer; transition: all 0.3s ease; margin-bottom: 12px; }
+    .payment-option:hover { border-color: #000; background: #FAFAFA; }
+    .payment-option.selected { border-color: #000; background: #FAFAFA; }
+    .payment-radio { width: 18px; height: 18px; border: 2px solid #BDBDBD; border-radius: 50%; position: relative; flex-shrink: 0; }
+    .payment-option.selected .payment-radio { border-color: #000; }
+    .payment-option.selected .payment-radio::after { content: ''; position: absolute; inset: 3px; background: #000; border-radius: 50%; }
+    .summary-card-checkout { background: #FAFAFA; padding: 32px; border: 1px solid #EEEEEE; }
+    .summary-item { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #E0E0E0; }
+    .summary-item:last-child { border-bottom: none; }
+  </style>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = NovaStore.Cart.get();
+      if (cart.length === 0) {
+        document.getElementById('checkoutContainer').innerHTML = `
+          <div style="text-align: center; padding: 80px 20px; background: #FAFAFA;">
+            <div style="font-size: 80px; margin-bottom: 24px; opacity: 0.3;">🛒</div>
+            <h2 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">Your cart is empty</h2>
+            <p style="color: #616161; margin-bottom: 32px;">Add products before checking out</p>
+            <a href="products.html" class="btn btn-primary btn-large">Shop Now</a>
+          </div>
+        `;
+        return;
+      }
+      renderCheckout();
+    });
+
+    function renderCheckout() {
+      const cart = NovaStore.Cart.get();
+      const subtotal = NovaStore.Cart.getTotal();
+      const shipping = NovaStore.Cart.getShipping();
+      const tax = Math.round(subtotal * 0.05);
+      const total = subtotal + shipping + tax;
+
+      document.getElementById('checkoutContainer').innerHTML = `
+        <div class="checkout-layout">
+          <div>
+            <div class="checkout-section">
+              <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #000;">📧 Contact Information</h2>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label">Email Address *</label>
+                <input type="email" class="form-input" placeholder="your@email.com" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label">Phone Number *</label>
+                <input type="tel" class="form-input" placeholder="+91 98765 43210" required>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #000;">📍 Shipping Address</h2>
+              <div class="form-row-2" style="margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label">First Name *</label>
+                  <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Last Name *</label>
+                  <input type="text" class="form-input" required>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label">Street Address *</label>
+                <input type="text" class="form-input" placeholder="House no, Street name" required>
+              </div>
+              <div class="form-group" style="margin-bottom: 16px;">
+                <label class="form-label">Apartment, Floor (Optional)</label>
+                <input type="text" class="form-input">
+              </div>
+              <div class="form-row-2" style="margin-bottom: 16px;">
+                <div class="form-group">
+                  <label class="form-label">City *</label>
+                  <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">PIN Code *</label>
+                  <input type="text" class="form-input" placeholder="6 digit" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label">State *</label>
+                <select class="form-select" required>
+                  <option value="">Select State</option>
+                  <option>Andhra Pradesh</option>
+                  <option>Bihar</option>
+                  <option>Delhi</option>
+                  <option>Gujarat</option>
+                  <option>Karnataka</option>
+                  <option>Maharashtra</option>
+                  <option>Punjab</option>
+                  <option>Rajasthan</option>
+                  <option>Tamil Nadu</option>
+                  <option>Uttar Pradesh</option>
+                  <option>West Bengal</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="checkout-section">
+              <h2 style="font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #000;">💳 Payment Method</h2>
+              <div class="payment-option selected" onclick="selectPayment(this)">
+                <div class="payment-radio"></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 4px;">📱 UPI Payment</div>
+                  <div style="font-size: 12px; color: #757575;">PhonePe, Google Pay, Paytm</div>
+                </div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <div class="payment-radio"></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 4px;">💳 Credit/Debit Card</div>
+                  <div style="font-size: 12px; color: #757575;">Visa, Mastercard, RuPay</div>
+                </div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <div class="payment-radio"></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 4px;">🏦 Net Banking</div>
+                  <div style="font-size: 12px; color: #757575;">All major banks</div>
+                </div>
+              </div>
+              <div class="payment-option" onclick="selectPayment(this)">
+                <div class="payment-radio"></div>
+                <div style="flex: 1;">
+                  <div style="font-weight: 600; margin-bottom: 4px;">💵 Cash on Delivery</div>
+                  <div style="font-size: 12px; color: #757575;">Pay when you receive</div>
+                </div>
+              </div>
+            </div>
+
+            <button onclick="placeOrder()" class="btn btn-primary btn-block btn-large" style="margin-top: 24px;">
+              Place Order · ₹${total.toLocaleString('en-IN')}
+            </button>
+
+            <p style="text-align: center; font-size: 12px; color: #757575; margin-top: 16px; line-height: 1.6;">
+              By placing this order, you agree to our<br>
+              <a href="#" style="color: #000; text-decoration: underline;">Terms</a> and 
+              <a href="#" style="color: #000; text-decoration: underline;">Privacy Policy</a>
+            </p>
+          </div>
+
+          <div>
+            <div class="summary-card-checkout">
+              <h3 style="font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #000;">Order Summary</h3>
+              
+              <div style="margin-bottom: 24px;">
+                ${cart.map(item => {
+                  const product = NovaStore.PRODUCTS.find(p => p.id === item.id);
+                  if (!product) return '';
+                  return `
+                    <div class="summary-item">
+                      <div style="width: 64px; height: 64px; background: linear-gradient(135deg, #EEEEEE, #FAFAFA); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative;">
+                        <span style="font-size: 24px; opacity: 0.3;">📦</span>
+                        <span style="position: absolute; top: -8px; right: -8px; width: 22px; height: 22px; background: #000; color: #FFF; border-radius: 50%; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">${item.quantity}</span>
+                      </div>
+                      <div style="flex: 1; min-width: 0;">
+                        <div style="font-size: 13px; font-weight: 500; margin-bottom: 4px;">${product.name}</div>
+                        <div style="font-size: 11px; color: #757575;">${product.categoryName}</div>
+                      </div>
+                      <div style="font-weight: 600; font-size: 14px;">₹${(product.price * item.quantity).toLocaleString('en-IN')}</div>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+
+              <div style="margin-bottom: 16px; padding-top: 16px; border-top: 1px solid #E0E0E0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                  <span style="color: #616161; font-size: 14px;">Subtotal</span>
+                  <span style="font-weight: 600;">₹${subtotal.toLocaleString('en-IN')}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                  <span style="color: #616161; font-size: 14px;">Shipping</span>
+                  <span style="font-weight: 600; ${shipping === 0 ? 'color: #2E7D32;' : ''}">${shipping === 0 ? 'FREE' : '₹' + shipping}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 12px;">
+                  <span style="color: #616161; font-size: 14px;">Tax (5%)</span>
+                  <span style="font-weight: 600;">₹${tax.toLocaleString('en-IN')}</span>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: space-between; align-items: baseline; padding-top: 16px; border-top: 2px solid #000;">
+                <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;">Total</span>
+                <span style="font-size: 28px; font-weight: 700;">₹${total.toLocaleString('en-IN')}</span>
+              </div>
+
+              <div style="margin-top: 24px; padding: 16px; background: #FFF; border-left: 3px solid #000; font-size: 12px; color: #424242; line-height: 1.6;">
+                🔒 Your payment is encrypted and secure
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectPayment(el) {
+      document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function placeOrder() {
+      const inputs = document.querySelectorAll('.form-input[required], .form-select[required]');
+      let allFilled = true;
+      
+      inputs.forEach(input => {
+        if (!input.value.trim()) {
+          input.style.borderColor = '#C62828';
+          allFilled = false;
+        } else {
+          input.style.borderColor = '#E0E0E0';
+        }
+      });
+      
+      if (!allFilled) {
+        NovaStore.Toast.show('Please fill all required fields', 'error');
+        const firstEmpty = Array.from(inputs).find(i => !i.value.trim());
+        if (firstEmpty) firstEmpty.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      
+      const orderNum = 'NV-2026-' + String(Math.floor(Math.random() * 9000) + 1000);
+      document.getElementById('orderNumber').textContent = orderNum;
+      document.getElementById('successModal').style.display = 'flex';
+      NovaStore.Cart.clear();
+    }
+  </script>
+
+</body>
+</html>

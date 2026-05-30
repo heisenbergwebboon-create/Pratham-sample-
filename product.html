@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — NOVA STORE</title>
+  <meta name="description" content="Shop premium products at NOVA STORE.">
+  <meta name="theme-color" content="#000000">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ═══════════════════════════════════════
+       COMPLETE RESET & BASE
+       No inheritance issues
+       ═══════════════════════════════════════ */
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    input, select, textarea { font-family: inherit; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    ::selection { background: #000; color: #fff; }
+
+    /* ═══════════════════════════════════════
+       CONTAINER
+       ═══════════════════════════════════════ */
+
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    @media (min-width: 640px)  { .container { padding: 0 24px; } }
+    @media (min-width: 768px)  { .container { padding: 0 32px; } }
+    @media (min-width: 1024px) { .container { padding: 0 40px; } }
+    @media (min-width: 1280px) { .container { padding: 0 56px; } }
+
+
+    /* ═══════════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════════ */
+
+    .announce-bar {
+      background: #000;
+      color: rgba(255,255,255,0.8);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding: 8px 16px;
+      position: relative;
+      z-index: 600;
+    }
+
+    .announce-bar .sep {
+      color: rgba(255,255,255,0.25);
+      margin: 0 8px;
+    }
+
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════════ */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #eee;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .nav-main-row {
+      padding: 12px 0;
+    }
+
+    .nav-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #000;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-logo .w-light { font-weight: 300; }
+
+    .nav-search-box {
+      flex: 1;
+      max-width: 520px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .nav-search-box { display: none; }
+    }
+
+    .nav-search-box input {
+      width: 100%;
+      padding: 10px 16px 10px 40px;
+      border: 1px solid #E0E0E0;
+      border-radius: 100px;
+      background: #FAFAFA;
+      font-size: 13px;
+      color: #000;
+      outline: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .nav-search-box input::placeholder { color: #9E9E9E; }
+
+    .nav-search-box input:focus {
+      border-color: #000;
+      background: #fff;
+    }
+
+    .nav-search-box svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9E9E9E;
+      pointer-events: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      position: relative;
+      transition: background 0.15s ease;
+      text-decoration: none;
+    }
+
+    .nav-icon-btn:hover { background: #F5F5F5; }
+
+    .cart-count {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      min-width: 16px;
+      height: 16px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+
+    .hamburger {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      transition: background 0.15s ease;
+    }
+
+    .hamburger:hover { background: #F5F5F5; }
+
+    .cat-bar {
+      border-top: 1px solid #F0F0F0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cat-bar::-webkit-scrollbar { display: none; }
+
+    .cat-bar-inner {
+      display: flex;
+      white-space: nowrap;
+    }
+
+    .cat-link {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: #616161;
+      padding: 12px 16px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    .cat-link:hover { color: #000; }
+
+    .cat-link.active {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .cat-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 16px;
+      right: 16px;
+      height: 2px;
+      background: #000;
+    }
+
+
+    /* ═══════════════════════════════════════
+       SIDE MENU
+       ═══════════════════════════════════════ */
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 800;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 320px;
+      height: 100vh;
+      height: 100dvh;
+      background: #fff;
+      z-index: 900;
+      transform: translateX(-100%);
+      transition: transform 0.45s cubic-bezier(0.25,0.1,0.25,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .side-menu.open { transform: translateX(0); }
+
+    .sm-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid #eee;
+      flex-shrink: 0;
+    }
+
+    .sm-logo {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+
+    .sm-close {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.3s ease;
+    }
+
+    .sm-close:hover {
+      background: #eee;
+      transform: rotate(90deg);
+    }
+
+    .sm-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+
+    .sm-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #F5F5F5;
+      transition: background 0.15s ease;
+    }
+
+    .sm-link:hover { background: #FAFAFA; }
+
+    .sm-link .arrow {
+      color: #BDBDBD;
+      font-size: 13px;
+    }
+
+    .sm-foot {
+      padding: 16px 20px;
+      border-top: 1px solid #eee;
+      font-size: 10px;
+      color: #9E9E9E;
+      flex-shrink: 0;
+    }
+
+
+    /* ═══════════════════════════════════════
+       BREADCRUMB
+       ═══════════════════════════════════════ */
+
+    .breadcrumb-bar {
+      background: #FAFAFA;
+      border-bottom: 1px solid #eee;
+      padding: 14px 0;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9E9E9E;
+      flex-wrap: wrap;
+    }
+
+    .breadcrumb a {
+      color: #9E9E9E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .breadcrumb a:hover { color: #000; }
+
+    .bc-sep { color: #D0D0D0; }
+    .bc-current { color: #000; font-weight: 600; }
+
+
+    /* ═══════════════════════════════════════
+       PRODUCT SECTION — MAIN LAYOUT
+       FIXED: Clean spacing, no overlaps
+       ═══════════════════════════════════════ */
+
+    .product-section {
+      padding: 32px 0 56px;
+      background: #fff;
+    }
+
+    @media (min-width: 768px) {
+      .product-section { padding: 40px 0 72px; }
+    }
+
+    @media (min-width: 1024px) {
+      .product-section { padding: 52px 0 88px; }
+    }
+
+    .product-layout {
+      display: block;
+    }
+
+    @media (min-width: 1024px) {
+      .product-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .product-layout { gap: 80px; }
+    }
+
+
+    /* ═══════════════════════════════════════
+       GALLERY — FIXED: No overlaps
+       Clear spacing, proper dimensions
+       ═══════════════════════════════════════ */
+
+    .gallery-col {
+      margin-bottom: 36px;
+      position: relative;
+    }
+
+    @media (min-width: 1024px) {
+      .gallery-col {
+        margin-bottom: 0;
+        position: sticky;
+        top: 100px;
+      }
+    }
+
+    .gallery-main {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(145deg, #F5F5F5, #FAFAFA);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .gallery-main-icon {
+      font-size: 80px;
+      opacity: 0.18;
+      user-select: none;
+    }
+
+    @media (min-width: 640px) {
+      .gallery-main-icon { font-size: 100px; }
+    }
+
+    .product-badge-main {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: #000;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      z-index: 2;
+    }
+
+    .product-badge-main.sale { background: #C62828; }
+
+    /* THUMBNAILS — FIXED: Clear separation from content below */
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .g-thumb {
+      aspect-ratio: 1 / 1;
+      border: 1.5px solid #E0E0E0;
+      background: #FAFAFA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+      font-size: 18px;
+      opacity: 0.55;
+    }
+
+    @media (min-width: 640px) {
+      .g-thumb { font-size: 20px; }
+    }
+
+    .g-thumb:hover { border-color: #9E9E9E; }
+
+    .g-thumb.active {
+      border-color: #000;
+      opacity: 1;
+    }
+
+
+    /* ═══════════════════════════════════════
+       PRODUCT INFO — FIXED: Proper spacing
+       No overlap, clean hierarchy
+       ═══════════════════════════════════════ */
+
+    .info-col {
+      /* No extra top padding — content flows naturally */
+    }
+
+    .info-brand {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: #9E9E9E;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .info-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: #000;
+      margin-bottom: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .info-name { font-size: 28px; }
+    }
+
+    @media (min-width: 1024px) {
+      .info-name { font-size: 32px; }
+    }
+
+    /* RATING */
+    .info-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .rating-stars {
+      color: #FFA000;
+      font-size: 15px;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+    }
+
+    .rating-text {
+      font-size: 12px;
+      color: #9E9E9E;
+    }
+
+    .rating-link {
+      font-size: 12px;
+      color: #000;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      cursor: pointer;
+    }
+
+    /* PRICE — FIXED: Clear visual separation */
+    .info-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 20px 0;
+      margin-bottom: 20px;
+      border-top: 1px solid #F0F0F0;
+      border-bottom: 1px solid #F0F0F0;
+    }
+
+    .price-main {
+      font-size: 28px;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    @media (min-width: 640px) {
+      .price-main { font-size: 32px; }
+    }
+
+    .price-orig {
+      font-size: 16px;
+      color: #BDBDBD;
+      text-decoration: line-through;
+      font-weight: 400;
+    }
+
+    .price-off-tag {
+      font-size: 12px;
+      font-weight: 700;
+      color: #2E7D32;
+      background: #E8F5E9;
+      padding: 3px 8px;
+      border-radius: 3px;
+      letter-spacing: 0.03em;
+    }
+
+    /* DESCRIPTION */
+    .info-desc {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #616161;
+      font-weight: 300;
+      margin-bottom: 24px;
+    }
+
+    /* STOCK */
+    .stock-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: #2E7D32;
+      margin-bottom: 24px;
+    }
+
+    .stock-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #2E7D32;
+      flex-shrink: 0;
+    }
+
+    /* SIZE OPTIONS */
+    .option-group {
+      margin-bottom: 24px;
+    }
+
+    .option-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #424242;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .option-val {
+      color: #9E9E9E;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .size-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .size-btn {
+      min-width: 44px;
+      height: 44px;
+      padding: 0 12px;
+      border: 1px solid #E0E0E0;
+      background: #fff;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .size-btn:hover { border-color: #000; }
+    .size-btn.active { background: #000; color: #fff; border-color: #000; }
+
+
+    /* ═══════════════════════════════════════
+       QUANTITY + ADD TO CART — FIXED
+       Clear section with proper spacing
+       ═══════════════════════════════════════ */
+
+    .cart-actions {
+      padding-top: 24px;
+      border-top: 1px solid #F0F0F0;
+      margin-bottom: 24px;
+    }
+
+    .qty-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #424242;
+      margin-bottom: 12px;
+    }
+
+    .qty-row {
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+      margin-bottom: 12px;
+    }
+
+    .qty-control {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid #E0E0E0;
+      flex-shrink: 0;
+    }
+
+    .qty-btn-ctrl {
+      width: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      border: none;
+      font-size: 18px;
+      color: #000;
+      cursor: pointer;
+      transition: background 0.15s ease;
+      line-height: 1;
+      font-family: 'Inter', sans-serif;
+      user-select: none;
+    }
+
+    .qty-btn-ctrl:hover { background: #F5F5F5; }
+
+    .qty-btn-ctrl:active { background: #EEEEEE; }
+
+    .qty-input {
+      width: 48px;
+      text-align: center;
+      border: none;
+      border-left: 1px solid #E0E0E0;
+      border-right: 1px solid #E0E0E0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      outline: none;
+      -moz-appearance: textfield;
+      background: #fff;
+    }
+
+    .qty-input::-webkit-outer-spin-button,
+    .qty-input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+
+    .btn-atc {
+      flex: 1;
+      min-height: 46px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .btn-atc:hover { background: #1A1A1A; }
+    .btn-atc:active { background: #333; }
+
+    .btn-buy {
+      width: 100%;
+      height: 46px;
+      background: transparent;
+      color: #000;
+      border: 1px solid #000;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+      margin-bottom: 8px;
+    }
+
+    .btn-buy:hover { background: #000; color: #fff; }
+
+    .btn-wish {
+      width: 100%;
+      padding: 10px;
+      background: transparent;
+      border: none;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9E9E9E;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-wish:hover { color: #000; }
+    .btn-wish.wished { color: #C62828; }
+
+
+    /* ═══════════════════════════════════════
+       DELIVERY + TRUST
+       ═══════════════════════════════════════ */
+
+    .delivery-box {
+      background: #FAFAFA;
+      border-left: 3px solid #000;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+    }
+
+    .delivery-box-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .delivery-box p {
+      font-size: 12px;
+      color: #616161;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .promise-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      border-top: 1px solid #F0F0F0;
+      padding-top: 20px;
+      text-align: center;
+    }
+
+    .promise-item-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .promise-item-text {
+      font-size: 10px;
+      font-weight: 500;
+      color: #616161;
+      letter-spacing: 0.04em;
+      line-height: 1.4;
+    }
+
+
+    /* ═══════════════════════════════════════
+       TABS SECTION
+       ═══════════════════════════════════════ */
+
+    .tabs-section {
+      background: #FAFAFA;
+      padding: 48px 0 56px;
+    }
+
+    @media (min-width: 768px) {
+      .tabs-section { padding: 64px 0 72px; }
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid #E0E0E0;
+      margin-bottom: 36px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs-nav::-webkit-scrollbar { display: none; }
+
+    .tab-btn {
+      padding: 12px 16px;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #9E9E9E;
+      cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: -1px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @media (min-width: 640px) {
+      .tab-btn { padding: 14px 22px; font-size: 12px; }
+    }
+
+    .tab-btn:hover { color: #000; }
+    .tab-btn.active { color: #000; border-bottom-color: #000; }
+
+    .tab-pane {
+      display: none;
+      max-width: 780px;
+    }
+
+    .tab-pane.active { display: block; }
+
+    .tab-heading {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .tab-subheading {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      margin-top: 28px;
+    }
+
+    .tab-body {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #424242;
+      font-weight: 300;
+      margin-bottom: 16px;
+    }
+
+    .features-list li {
+      padding: 10px 0 10px 22px;
+      position: relative;
+      font-size: 14px;
+      color: #424242;
+      border-bottom: 1px solid #F0F0F0;
+      font-weight: 300;
+      line-height: 1.5;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #000;
+      font-weight: 700;
+    }
+
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .specs-table tr { border-bottom: 1px solid #EEEEEE; }
+    .specs-table tr:last-child { border-bottom: none; }
+
+    .specs-table td {
+      padding: 12px 0;
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    .specs-table td:first-child {
+      width: 150px;
+      font-weight: 600;
+      color: #616161;
+      padding-right: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .specs-table td:first-child { width: 180px; }
+    }
+
+    .specs-table td:last-child { color: #000; font-weight: 300; }
+
+    /* Reviews */
+    .rating-summary {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      background: #fff;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    @media (min-width: 640px) {
+      .rating-summary {
+        grid-template-columns: auto 1fr;
+        gap: 32px;
+        padding: 28px;
+      }
+    }
+
+    .rating-big { text-align: center; }
+    .rating-number { font-size: 48px; font-weight: 800; letter-spacing: -0.06em; line-height: 1; margin-bottom: 6px; }
+    .rating-stars-big { font-size: 18px; color: #FFA000; letter-spacing: 2px; margin-bottom: 6px; }
+    .rating-based { font-size: 11px; color: #9E9E9E; }
+
+    .rating-bars { display: flex; flex-direction: column; gap: 7px; }
+
+    .rating-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      color: #616161;
+    }
+
+    .rating-bar-label { width: 32px; text-align: right; flex-shrink: 0; font-size: 11px; }
+
+    .rating-bar-track {
+      flex: 1;
+      height: 6px;
+      background: #EEEEEE;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .rating-bar-fill { height: 100%; background: #000; border-radius: 3px; }
+
+    .rating-bar-count { width: 24px; flex-shrink: 0; font-size: 11px; }
+
+    .review-card {
+      padding: 18px 0;
+      border-bottom: 1px solid #EEEEEE;
+    }
+
+    .review-card:last-of-type { border-bottom: none; }
+
+    .review-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .reviewer-name { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+    .reviewer-stars { color: #FFA000; font-size: 12px; }
+    .review-date { font-size: 11px; color: #BDBDBD; flex-shrink: 0; }
+    .review-title { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .review-body { font-size: 13px; line-height: 1.65; color: #616161; font-weight: 300; }
+
+    .btn-view-all-reviews {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid #000;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s ease;
+    }
+
+    .btn-view-all-reviews:hover { background: #000; color: #fff; }
+
+    /* Shipping tab */
+    .shipping-block { margin-bottom: 24px; }
+
+    .shipping-block-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .shipping-list li {
+      font-size: 13px;
+      color: #424242;
+      line-height: 1.75;
+      font-weight: 300;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .shipping-list li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: #9E9E9E;
+      font-weight: 700;
+    }
+
+
+    /* ═══════════════════════════════════════
+       RELATED PRODUCTS — CLEAN GRID
+       ═══════════════════════════════════════ */
+
+    .related-section {
+      padding: 56px 0 64px;
+      background: #fff;
+    }
+
+    @media (min-width: 768px) {
+      .related-section { padding: 80px 0 96px; }
+    }
+
+    .sec-eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      color: #9E9E9E;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .sec-heading {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #000;
+    }
+
+    @media (min-width: 640px) {
+      .sec-heading { font-size: 28px; }
+    }
+
+    .sec-heading .serif-word {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 36px;
+    }
+
+    @media (min-width: 640px) { .related-grid { gap: 20px; } }
+    @media (min-width: 768px) { .related-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+    @media (min-width: 1200px) { .related-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; } }
+
+    /* Product cards */
+    .p-card {
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .p-card:hover { transform: translateY(-4px); }
+
+    .p-card-img {
+      aspect-ratio: 1 / 1;
+      background: #F5F5F5;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .p-card-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      opacity: 0.2;
+      background: linear-gradient(145deg, #F5F5F5, #FAFAFA);
+    }
+
+    .p-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #000;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      z-index: 2;
+    }
+
+    .p-badge.sale { background: #C62828; }
+
+    .p-wish-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .p-card:hover .p-wish-btn { opacity: 1; transform: translateY(0); }
+    .p-wish-btn.active { opacity: 1; transform: translateY(0); }
+
+    .p-add-btn {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 2;
+    }
+
+    .p-card:hover .p-add-btn { opacity: 1; transform: translateY(0); }
+
+    .p-card-cat { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; color: #9E9E9E; text-transform: uppercase; margin-bottom: 3px; }
+    .p-card-name { font-size: 12px; font-weight: 500; color: #000; line-height: 1.35; margin-bottom: 5px; }
+    .p-card-stars { display: flex; align-items: center; gap: 4px; margin-bottom: 5px; }
+    .stars-val { font-size: 10px; color: #FFA000; }
+    .reviews-val { font-size: 10px; color: #BDBDBD; }
+    .p-card-price { display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; }
+    .price-now { font-size: 13px; font-weight: 700; color: #000; }
+    .price-was { font-size: 11px; color: #BDBDBD; text-decoration: line-through; }
+    .price-off { font-size: 10px; font-weight: 600; color: #2E7D32; }
+
+    @media (min-width: 640px) {
+      .p-card-name { font-size: 13px; }
+      .price-now { font-size: 14px; }
+    }
+
+
+    /* ═══════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════ */
+
+    .footer {
+      background: #000;
+      color: #fff;
+      padding: 56px 0 28px;
+    }
+
+    @media (min-width: 768px) {
+      .footer { padding: 72px 0 36px; }
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 56px; }
+    }
+
+    .footer-logo-text { font-size: 15px; font-weight: 800; letter-spacing: 0.18em; margin-bottom: 10px; }
+    .footer-desc { font-size: 12px; color: #616161; line-height: 1.7; font-weight: 300; max-width: 260px; }
+    .footer-col-heading { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 14px; }
+    .footer-links-col { display: flex; flex-direction: column; gap: 9px; }
+    .f-link { font-size: 12px; color: #616161; text-decoration: none; font-weight: 300; transition: color 0.2s ease; }
+    .f-link:hover { color: #fff; }
+
+    .footer-bottom-bar {
+      border-top: 1px solid #1A1A1A;
+      padding-top: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-copy { font-size: 10px; color: #424242; }
+    .footer-legal { display: flex; gap: 16px; }
+    .footer-legal a { font-size: 10px; color: #424242; text-decoration: none; transition: color 0.2s ease; }
+    .footer-legal a:hover { color: #757575; }
+
+
+    /* ═══════════════════════════════════════
+       NOT FOUND STATE
+       ═══════════════════════════════════════ */
+
+    .not-found {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .not-found-icon { font-size: 56px; opacity: 0.2; margin-bottom: 20px; }
+    .not-found-heading { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+    .not-found-sub { font-size: 14px; color: #9E9E9E; font-weight: 300; margin-bottom: 28px; }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      background: #000;
+      color: #fff;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .btn-back:hover { background: #1A1A1A; }
+
+
+    /* ═══════════════════════════════════════
+       REDUCED MOTION
+       ═══════════════════════════════════════ */
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition-duration: 0.01ms !important; }
+      .p-card { transform: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announce-bar">
+    Free shipping on orders above ₹999
+    <span class="sep">·</span>
+    30-day easy returns
+    <span class="sep">·</span>
+    Premium quality
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="mainNavbar">
+    <div class="nav-main-row">
+      <div class="container">
+        <div class="nav-flex">
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <a href="index.html" class="nav-logo">NOVA<span class="w-light">STORE</span></a>
+
+          <div class="nav-search-box">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search" id="navSearch" placeholder="Search products..." autocomplete="off" aria-label="Search">
+          </div>
+
+          <div class="nav-actions">
+            <button class="nav-icon-btn" aria-label="Account">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+              </svg>
+            </button>
+            <a href="cart.html" class="nav-icon-btn" aria-label="Cart">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              <span class="cart-count" id="cartBadge" aria-live="polite"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cat-bar">
+      <div class="container">
+        <nav class="cat-bar-inner" aria-label="Categories">
+          <a href="products.html" class="cat-link">All Products</a>
+          <a href="products.html?cat=electronics" class="cat-link">Electronics</a>
+          <a href="products.html?cat=fashion" class="cat-link">Fashion</a>
+          <a href="products.html?cat=home" class="cat-link">Home &amp; Living</a>
+          <a href="products.html?cat=beauty" class="cat-link">Beauty</a>
+          <a href="products.html?cat=accessories" class="cat-link">Accessories</a>
+          <a href="products.html?cat=fitness" class="cat-link">Fitness</a>
+        </nav>
+      </div>
+    </div>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div class="menu-overlay" id="menuOverlay"></div>
+  <aside class="side-menu" id="sideMenu" role="dialog" aria-modal="true" aria-label="Navigation">
+    <div class="sm-header">
+      <span class="sm-logo">NOVA STORE</span>
+      <button class="sm-close" id="smClose" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="sm-nav">
+      <a href="index.html" class="sm-link"><span>Home</span><span class="arrow">→</span></a>
+      <a href="products.html" class="sm-link"><span>All Products</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=electronics" class="sm-link"><span>Electronics</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=fashion" class="sm-link"><span>Fashion</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=home" class="sm-link"><span>Home &amp; Living</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=beauty" class="sm-link"><span>Beauty</span><span class="arrow">→</span></a>
+      <a href="cart.html" class="sm-link"><span>Cart</span><span class="arrow">→</span></a>
+    </nav>
+    <div class="sm-foot">© 2026 NOVA STORE</div>
+  </aside>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-bar">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">/</span>
+        <a href="products.html">Products</a>
+        <span class="bc-sep" id="bcCatSep" style="display:none;">/</span>
+        <a href="#" id="bcCategory" style="display:none;"></a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current" id="bcProduct">Loading…</span>
+      </nav>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════
+       PRODUCT SECTION — FIXED LAYOUT
+       ═══════════════════════════════════════ -->
+
+  <section class="product-section">
+    <div class="container">
+      <div class="product-layout" id="productLayout">
+
+        <!-- LEFT — Gallery -->
+        <div class="gallery-col" id="galleryCol">
+          <div class="gallery-main" id="galleryMain">
+            <div class="gallery-main-icon" id="galleryIcon">📦</div>
+            <span class="product-badge-main" id="productBadge" style="display:none;"></span>
+          </div>
+          <div class="gallery-thumbs" id="galleryThumbs">
+            <div class="g-thumb active" data-thumb="0" role="button" tabindex="0">📦</div>
+            <div class="g-thumb" data-thumb="1" role="button" tabindex="0">📦</div>
+            <div class="g-thumb" data-thumb="2" role="button" tabindex="0">📦</div>
+            <div class="g-thumb" data-thumb="3" role="button" tabindex="0">📦</div>
+          </div>
+        </div>
+
+        <!-- RIGHT — Product Info -->
+        <div class="info-col" id="infoCol">
+
+          <p class="info-brand" id="infoBrand">Loading…</p>
+          <h1 class="info-name" id="infoName">Loading product…</h1>
+
+          <div class="info-rating" id="infoRating">
+            <span class="rating-stars">★★★★★</span>
+            <span class="rating-text">Loading…</span>
+            <span class="rating-link" onclick="switchTab('reviews')">See reviews</span>
+          </div>
+
+          <div class="info-price-row" id="infoPriceRow">
+            <span class="price-main" id="priceNow">₹—</span>
+          </div>
+
+          <p class="info-desc" id="infoDesc">Loading description…</p>
+
+          <div class="stock-pill" id="stockPill">
+            <span class="stock-dot"></span>
+            In Stock
+          </div>
+
+          <!-- Size options (shown for fashion products) -->
+          <div class="option-group" id="sizeGroup" style="display:none;">
+            <div class="option-label">Size <span class="option-val" id="selectedSize"></span></div>
+            <div class="size-btns" id="sizeBtns"></div>
+          </div>
+
+          <!-- Cart Actions — FIXED: Proper separation -->
+          <div class="cart-actions">
+            <p class="qty-label">Quantity</p>
+
+            <div class="qty-row">
+              <div class="qty-control" role="group" aria-label="Quantity selector">
+                <button class="qty-btn-ctrl" id="qtyMinus" aria-label="Decrease quantity">−</button>
+                <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="10" aria-label="Quantity">
+                <button class="qty-btn-ctrl" id="qtyPlus" aria-label="Increase quantity">+</button>
+              </div>
+              <button class="btn-atc" id="addToCartBtn">Add to Cart</button>
+            </div>
+
+            <button class="btn-buy" id="buyNowBtn">Buy Now</button>
+
+            <button class="btn-wish" id="wishlistBtn" aria-label="Add to wishlist" aria-pressed="false">
+              <span id="wishIcon">🤍</span>
+              <span id="wishText">Add to Wishlist</span>
+            </button>
+          </div>
+
+          <div class="delivery-box">
+            <div class="delivery-box-title"><span>🚚</span> Free delivery on this order</div>
+            <p>Estimated 3–5 business days. Express available.</p>
+          </div>
+
+          <div class="promise-strip" role="list">
+            <div role="listitem">
+              <div class="promise-item-icon">↩️</div>
+              <div class="promise-item-text">30-Day Returns</div>
+            </div>
+            <div role="listitem">
+              <div class="promise-item-icon">🛡️</div>
+              <div class="promise-item-text">2-Year Warranty</div>
+            </div>
+            <div role="listitem">
+              <div class="promise-item-icon">🔒</div>
+              <div class="promise-item-text">Secure Payment</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TABS -->
+  <section class="tabs-section">
+    <div class="container">
+      <div class="tabs-nav" role="tablist" aria-label="Product information">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="description">Description</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="specifications">Specifications</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="reviews">Reviews</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="shipping">Shipping</button>
+      </div>
+
+      <!-- Description -->
+      <div class="tab-pane active" id="tab-description" role="tabpanel">
+        <h3 class="tab-heading">Product Description</h3>
+        <p class="tab-body" id="tabDescBody">Loading…</p>
+        <h4 class="tab-subheading">Key Features</h4>
+        <ul class="features-list" id="tabFeaturesList"></ul>
+      </div>
+
+      <!-- Specifications -->
+      <div class="tab-pane" id="tab-specifications" role="tabpanel">
+        <h3 class="tab-heading">Specifications</h3>
+        <table class="specs-table">
+          <tr><td>Brand</td><td>NOVA</td></tr>
+          <tr><td>Material</td><td>Premium Quality</td></tr>
+          <tr><td>Weight</td><td>500g</td></tr>
+          <tr><td>Dimensions</td><td>25 × 15 × 10 cm</td></tr>
+          <tr><td>Warranty</td><td>2 Years</td></tr>
+          <tr><td>Country</td><td>India</td></tr>
+          <tr><td>SKU</td><td id="skuCell">NOVA-001</td></tr>
+        </table>
+      </div>
+
+      <!-- Reviews -->
+      <div class="tab-pane" id="tab-reviews" role="tabpanel">
+        <div class="rating-summary">
+          <div class="rating-big">
+            <div class="rating-number" id="avgRating">4.5</div>
+            <div class="rating-stars-big">★★★★★</div>
+            <div class="rating-based">Based on 45 reviews</div>
+          </div>
+          <div class="rating-bars">
+            <div class="rating-bar-row"><span class="rating-bar-label">5 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:71%;"></div></div><span class="rating-bar-count">32</span></div>
+            <div class="rating-bar-row"><span class="rating-bar-label">4 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:20%;"></div></div><span class="rating-bar-count">9</span></div>
+            <div class="rating-bar-row"><span class="rating-bar-label">3 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:7%;"></div></div><span class="rating-bar-count">3</span></div>
+            <div class="rating-bar-row"><span class="rating-bar-label">2 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:2%;"></div></div><span class="rating-bar-count">1</span></div>
+            <div class="rating-bar-row"><span class="rating-bar-label">1 ★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%;"></div></div><span class="rating-bar-count">0</span></div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header"><div><p class="reviewer-name">Priya Sharma</p><p class="reviewer-stars">★★★★★</p></div><span class="review-date">2 days ago</span></div>
+          <p class="review-title">Excellent quality!</p>
+          <p class="review-body">Absolutely loving this product. The quality is amazing and exactly as described. Delivery was super fast.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><div><p class="reviewer-name">Rahul Verma</p><p class="reviewer-stars">★★★★★</p></div><span class="review-date">1 week ago</span></div>
+          <p class="review-title">Worth every rupee</p>
+          <p class="review-body">Premium product at a reasonable price. The minimalist design is exactly what I was looking for.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><div><p class="reviewer-name">Anjali Mehta</p><p class="reviewer-stars">★★★★☆</p></div><span class="review-date">2 weeks ago</span></div>
+          <p class="review-title">Great product</p>
+          <p class="review-body">Good quality and design. Took 4 days to deliver which was slightly longer than expected, but the product makes up for it.</p>
+        </div>
+        <div class="review-card">
+          <div class="review-header"><div><p class="reviewer-name">Kiran Patel</p><p class="reviewer-stars">★★★★★</p></div><span class="review-date">3 weeks ago</span></div>
+          <p class="review-title">Exactly as described</p>
+          <p class="review-body">No complaints. The product is exactly as shown and described. Very happy with my purchase.</p>
+        </div>
+
+        <button class="btn-view-all-reviews">View All Reviews →</button>
+      </div>
+
+      <!-- Shipping -->
+      <div class="tab-pane" id="tab-shipping" role="tabpanel">
+        <div class="shipping-block"><h4 class="shipping-block-title"><span>🚚</span> Delivery</h4><ul class="shipping-list"><li>Free shipping on orders above ₹999</li><li>Standard delivery: 3–5 business days</li><li>Express delivery: 1–2 business days (₹199 extra)</li><li>Cash on Delivery available</li></ul></div>
+        <div class="shipping-block"><h4 class="shipping-block-title"><span>↩️</span> Returns</h4><ul class="shipping-list"><li>30-day easy returns</li><li>Item must be in original condition</li><li>Free return pickup</li><li>Refund processed in 5–7 days</li></ul></div>
+        <div class="shipping-block"><h4 class="shipping-block-title"><span>🔒</span> Secure Payment</h4><ul class="shipping-list"><li>256-bit SSL encrypted checkout</li><li>UPI, Cards, Net Banking, Wallets</li><li>No-cost EMI available</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- RELATED PRODUCTS -->
+  <section class="related-section">
+    <div class="container">
+      <div style="text-align:center; margin-bottom: 8px;">
+        <span class="sec-eyebrow">You May Also Like</span>
+        <h2 class="sec-heading">Related <span class="serif-word">products</span></h2>
+      </div>
+      <div class="related-grid" id="relatedGrid"></div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <p class="footer-logo-text">NOVA STORE</p>
+          <p class="footer-desc">Curated excellence for the modern lifestyle.</p>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Shop</h4>
+          <nav class="footer-links-col">
+            <a href="products.html" class="f-link">All Products</a>
+            <a href="products.html?cat=electronics" class="f-link">Electronics</a>
+            <a href="products.html?cat=fashion" class="f-link">Fashion</a>
+            <a href="products.html?cat=home" class="f-link">Home &amp; Living</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Customer Care</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="f-link">Contact Us</a>
+            <a href="#" class="f-link">Shipping Info</a>
+            <a href="#" class="f-link">Returns</a>
+            <a href="#" class="f-link">FAQ</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-col-heading">Company</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="f-link">About Us</a>
+            <a href="#" class="f-link">Privacy Policy</a>
+            <a href="#" class="f-link">Terms</a>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">© 2026 NOVA STORE. All rights reserved.</p>
+        <nav class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a></nav>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script src="js/main.js"></script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── Helpers ── */
+    function fmt(n) { return '₹' + Number(n).toLocaleString('en-IN'); }
+    function calcDiscount(o, c) { return (!o || o <= c) ? 0 : Math.round(((o - c) / o) * 100); }
+    function starsStr(r) { return '★'.repeat(Math.floor(r)) + '☆'.repeat(5 - Math.floor(r)); }
+    function getParam(n) { return new URLSearchParams(window.location.search).get(n); }
+
+    var PRODUCTS = [];
+    var currentProduct = null;
+
+    /* ── Navbar scroll ── */
+    var navbar = document.getElementById('mainNavbar');
+    window.addEventListener('scroll', function () {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ── Side menu ── */
+    var hamburger = document.getElementById('hamburgerBtn');
+    var sideMenu  = document.getElementById('sideMenu');
+    var overlay   = document.getElementById('menuOverlay');
+    var smClose   = document.getElementById('smClose');
+    var menuOpen  = false;
+
+    function openMenu() {
+      sideMenu.classList.add('open');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      menuOpen = true;
+    }
+
+    function closeMenu() {
+      sideMenu.classList.remove('open');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      menuOpen = false;
+    }
+
+    hamburger.addEventListener('click', openMenu);
+    smClose.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', closeMenu);
+    sideMenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menuOpen) closeMenu(); });
+
+    /* ── Cart badge ── */
+    function updateCartBadge() {
+      try {
+        var cart = JSON.parse(localStorage.getItem('nova_cart') || '[]');
+        var count = cart.reduce(function (s, i) { return s + (i.quantity || 1); }, 0);
+        var badge = document.getElementById('cartBadge');
+        if (badge) { badge.textContent = count > 99 ? '99+' : count; badge.style.display = count > 0 ? 'flex' : 'none'; }
+      } catch (e) {}
+    }
+
+    window.addEventListener('nova:cart:change', updateCartBadge);
+    updateCartBadge();
+
+    /* ── Safe wrappers ── */
+    function cartAdd(id, qty) {
+      try {
+        if (window.NovaStore && window.NovaStore.Cart) { window.NovaStore.Cart.add(id, qty || 1); updateCartBadge(); }
+      } catch (e) {}
+    }
+
+    function isWishlisted(id) {
+      try { return window.NovaStore && window.NovaStore.Wishlist ? window.NovaStore.Wishlist.has(id) : false; } catch (e) { return false; }
+    }
+
+    function showToast(msg, type) {
+      try { if (window.NovaStore && window.NovaStore.Toast) window.NovaStore.Toast.show(msg, type || 'success'); } catch (e) {}
+    }
+
+    window.addToCart = function (id, qty) { cartAdd(id, qty); };
+
+    window.relatedWish = function (id, btn) {
+      try {
+        if (window.NovaStore && window.NovaStore.Wishlist) {
+          window.NovaStore.Wishlist.toggle(id);
+          var has = window.NovaStore.Wishlist.has(id);
+          if (btn) { btn.innerHTML = has ? '❤️' : '🤍'; btn.classList.toggle('active', has); }
+        }
+      } catch (e) {}
+    };
+
+    /* ── Tabs ── */
+    window.switchTab = function (tabName) {
+      document.querySelectorAll('.tab-btn').forEach(function (b) {
+        b.classList.toggle('active', b.dataset.tab === tabName);
+        b.setAttribute('aria-selected', String(b.dataset.tab === tabName));
+      });
+      document.querySelectorAll('.tab-pane').forEach(function (p) {
+        p.classList.toggle('active', p.id === 'tab-' + tabName);
+      });
+      var sec = document.querySelector('.tabs-section');
+      if (sec) window.scrollTo({ top: sec.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+    };
+
+    document.querySelectorAll('.tab-btn').forEach(function (b) {
+      b.addEventListener('click', function () { switchTab(b.dataset.tab); });
+    });
+
+    /* ── Gallery ── */
+    document.querySelectorAll('.g-thumb').forEach(function (t) {
+      t.addEventListener('click', function () {
+        document.querySelectorAll('.g-thumb').forEach(function (x) { x.classList.remove('active'); });
+        t.classList.add('active');
+      });
+      t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t.click(); } });
+    });
+
+    /* ── Quantity ── */
+    var qtyInput = document.getElementById('qtyInput');
+    var qtyMinus = document.getElementById('qtyMinus');
+    var qtyPlus  = document.getElementById('qtyPlus');
+
+    function getQty() { return Math.max(1, Math.min(parseInt(qtyInput.value) || 1, 10)); }
+
+    qtyMinus.addEventListener('click', function () { qtyInput.value = Math.max(1, getQty() - 1); });
+    qtyPlus.addEventListener('click', function () { qtyInput.value = Math.min(10, getQty() + 1); });
+    qtyInput.addEventListener('change', function () { qtyInput.value = getQty(); });
+    qtyInput.addEventListener('blur', function () { qtyInput.value = getQty(); });
+
+    /* ── Wishlist button ── */
+    function updateWishBtn(id) {
+      var w = isWishlisted(id);
+      var btn = document.getElementById('wishlistBtn');
+      var icon = document.getElementById('wishIcon');
+      var text = document.getElementById('wishText');
+      if (btn) { btn.classList.toggle('wished', w); btn.setAttribute('aria-pressed', String(w)); }
+      if (icon) icon.textContent = w ? '❤️' : '🤍';
+      if (text) text.textContent = w ? 'Added to Wishlist' : 'Add to Wishlist';
+    }
+
+    function toggleWish(id) {
+      try { if (window.NovaStore && window.NovaStore.Wishlist) window.NovaStore.Wishlist.toggle(id); } catch (e) {}
+      updateWishBtn(id);
+    }
+
+    /* ── Build related product card ── */
+    function buildCard(product) {
+      var d = calcDiscount(product.originalPrice, product.price);
+      var badge = product.badge ? '<span class="p-badge ' + (product.badge === 'SALE' ? 'sale' : '') + '">' + product.badge + '</span>' : '';
+      var disc = d > 0 ? '<span class="price-was">' + fmt(product.originalPrice) + '</span><span class="price-off">' + d + '% OFF</span>' : '';
+
+      return '<article class="p-card">' +
+        '<div class="p-card-img">' +
+          '<div class="p-card-placeholder">📦</div>' +
+          badge +
+          '<button class="p-wish-btn ' + (isWishlisted(product.id) ? 'active' : '') + '" onclick="event.stopPropagation();relatedWish(' + product.id + ',this)" aria-label="Wishlist">' + (isWishlisted(product.id) ? '❤️' : '🤍') + '</button>' +
+          '<button class="p-add-btn" onclick="event.stopPropagation();addToCart(' + product.id + ')">Add to Cart</button>' +
+        '</div>' +
+        '<a href="product.html?id=' + product.id + '" style="display:block;text-decoration:none;color:inherit;">' +
+          '<p class="p-card-cat">' + product.categoryName + '</p>' +
+          '<p class="p-card-name">' + product.name + '</p>' +
+          '<div class="p-card-stars"><span class="stars-val">' + starsStr(product.rating) + '</span><span class="reviews-val">(' + product.reviews + ')</span></div>' +
+          '<div class="p-card-price"><span class="price-now">' + fmt(product.price) + '</span>' + disc + '</div>' +
+        '</a></article>';
+    }
+
+    /* ── Not found ── */
+    function showNotFound() {
+      document.getElementById('productLayout').innerHTML =
+        '<div class="not-found" style="grid-column:1/-1;">' +
+          '<div class="not-found-icon">📦</div>' +
+          '<h2 class="not-found-heading">Product not found</h2>' +
+          '<p class="not-found-sub">This product doesn\'t exist or has been removed.</p>' +
+          '<a href="products.html" class="btn-back">Browse Products →</a>' +
+        '</div>';
+      document.getElementById('relatedGrid').innerHTML = '';
+    }
+
+    /* ── Render product ── */
+    function renderProduct(product) {
+      currentProduct = product;
+      var d = calcDiscount(product.originalPrice, product.price);
+
+      document.title = product.name + ' — NOVA STORE';
+
+      /* Breadcrumb */
+      var bcCat = document.getElementById('bcCategory');
+      var bcSep = document.getElementById('bcCatSep');
+      bcCat.textContent = product.categoryName;
+      bcCat.href = 'products.html?cat=' + product.category;
+      bcCat.style.display = 'inline';
+      bcSep.style.display = 'inline';
+      document.getElementById('bcProduct').textContent = product.name;
+
+      /* Badge */
+      if (product.badge) {
+        var badge = document.getElementById('productBadge');
+        badge.textContent = product.badge;
+        badge.style.display = 'block';
+        if (product.badge === 'SALE') badge.classList.add('sale');
+      }
+
+      /* Info */
+      document.getElementById('infoBrand').textContent = product.categoryName;
+      document.getElementById('infoName').textContent = product.name;
+      document.getElementById('infoDesc').textContent = product.description || '';
+
+      var ratingEl = document.getElementById('infoRating');
+      ratingEl.querySelector('.rating-stars').textContent = starsStr(product.rating);
+      ratingEl.querySelector('.rating-text').textContent = product.rating + ' (' + product.reviews + ' reviews)';
+
+      document.getElementById('priceNow').textContent = fmt(product.price);
+
+      /* Dynamic price elements */
+      var priceRow = document.getElementById('infoPriceRow');
+      var existOrig = priceRow.querySelector('.price-orig');
+      var existOff = priceRow.querySelector('.price-off-tag');
+      if (existOrig) existOrig.remove();
+      if (existOff) existOff.remove();
+
+      if (d > 0) {
+        var origEl = document.createElement('span');
+        origEl.className = 'price-orig';
+        origEl.textContent = fmt(product.originalPrice);
+        priceRow.appendChild(origEl);
+
+        var offEl = document.createElement('span');
+        offEl.className = 'price-off-tag';
+        offEl.textContent = d + '% OFF';
+        priceRow.appendChild(offEl);
+      }
+
+      document.getElementById('skuCell').textContent = 'NOVA-' + String(product.id).padStart(3, '0');
+      if (document.getElementById('avgRating')) document.getElementById('avgRating').textContent = product.rating;
+
+      /* Tab content */
+      document.getElementById('tabDescBody').textContent = (product.description || '') + ' Carefully crafted with premium materials. Designed for everyday elegance.';
+
+      var fl = document.getElementById('tabFeaturesList');
+      fl.innerHTML = (product.features || []).map(function (f) { return '<li>' + f + '</li>'; }).join('') || '<li>Premium quality</li><li>Thoughtfully designed</li>';
+
+      /* Wishlist state */
+      updateWishBtn(product.id);
+
+      /* CTA buttons */
+      document.getElementById('addToCartBtn').onclick = function () { cartAdd(product.id, getQty()); };
+      document.getElementById('buyNowBtn').onclick = function () { cartAdd(product.id, getQty()); setTimeout(function () { window.location.href = 'checkout.html'; }, 500); };
+      document.getElementById('wishlistBtn').onclick = function () { toggleWish(product.id); };
+
+      /* Related */
+      var related = PRODUCTS.filter(function (p) { return p.category === product.category && p.id !== product.id; });
+      if (related.length < 4) {
+        var others = PRODUCTS.filter(function (p) { return p.id !== product.id && !related.find(function (r) { return r.id === p.id; }); });
+        related = related.concat(others.slice(0, 4 - related.length));
+      }
+      document.getElementById('relatedGrid').innerHTML = related.slice(0, 4).map(buildCard).join('');
+    }
+
+
+    /* ── INIT ── */
+    document.addEventListener('DOMContentLoaded', function () {
+      updateCartBadge();
+
+      if (window.NovaStore && window.NovaStore.PRODUCTS) PRODUCTS = window.NovaStore.PRODUCTS;
+
+      var productId = parseInt(getParam('id')) || 1;
+      var product = PRODUCTS.find(function (p) { return p.id === productId; });
+
+      if (!product) { showNotFound(); return; }
+
+      renderProduct(product);
+
+      /* Nav search */
+      var navSearch = document.getElementById('navSearch');
+      if (navSearch) {
+        navSearch.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' && navSearch.value.trim()) {
+            window.location.href = 'products.html?q=' + encodeURIComponent(navSearch.value.trim());
+          }
+        });
+      }
+    });
+
+  })();
+  </script>
+
+</body>
+</html>

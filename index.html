@@ -1,0 +1,1970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOVA STORE — Premium Online Shopping</title>
+  <meta name="description" content="Discover premium products at NOVA STORE. Electronics, Fashion, Home & Living, Beauty, and more. Free shipping above ₹999.">
+  <meta name="theme-color" content="#000000">
+  <meta name="robots" content="index, follow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Design System -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* ═══════════════════════════════════
+       PAGE-SPECIFIC OVERRIDES
+       ═══════════════════════════════════ */
+
+    /* ─── Announcement Bar ─── */
+    .announcement-bar {
+      background: #000;
+      color: rgba(255,255,255,0.85);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-align: center;
+      padding: 9px 24px;
+      position: relative;
+      z-index: 600;
+    }
+
+    .announcement-bar span {
+      color: rgba(255,255,255,0.5);
+      margin: 0 10px;
+    }
+
+    .announcement-bar a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ─── Navbar ─── */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid #EEEEEE;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .navbar-main-row {
+      padding: 14px 0;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .nav-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #000;
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 3px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .nav-logo .store-word {
+      font-weight: 300;
+    }
+
+    .nav-search-wrap {
+      flex: 1;
+      max-width: 560px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .nav-search-wrap { display: none; }
+    }
+
+    .nav-search-wrap input {
+      width: 100%;
+      padding: 11px 18px 11px 44px;
+      border: 1px solid #E0E0E0;
+      border-radius: 100px;
+      background: #FAFAFA;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #000;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .nav-search-wrap input::placeholder { color: #9E9E9E; }
+
+    .nav-search-wrap input:focus {
+      border-color: #000;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
+    }
+
+    .nav-search-wrap svg {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9E9E9E;
+      pointer-events: none;
+    }
+
+    .nav-actions-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+
+    .nav-icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1A1A1A;
+      background: none;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s ease;
+      text-decoration: none;
+    }
+
+    .nav-icon-btn:hover { background: #F5F5F5; }
+
+    .cart-count {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 16px;
+      height: 16px;
+      background: #000;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 9px;
+      font-weight: 700;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+
+    .hamburger {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #000;
+      transition: background 0.2s ease;
+    }
+
+    .hamburger:hover { background: #F5F5F5; }
+
+    /* ─── Categories Bar ─── */
+    .cat-bar {
+      border-top: 1px solid #F0F0F0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .cat-bar::-webkit-scrollbar { display: none; }
+
+    .cat-bar-inner {
+      display: flex;
+      gap: 0;
+      padding: 0;
+      white-space: nowrap;
+    }
+
+    .cat-link {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: #616161;
+      padding: 13px 18px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      position: relative;
+      white-space: nowrap;
+    }
+
+    .cat-link:hover { color: #000; }
+
+    .cat-link.active {
+      color: #000;
+      font-weight: 600;
+    }
+
+    .cat-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 18px;
+      right: 18px;
+      height: 2px;
+      background: #000;
+      border-radius: 2px 2px 0 0;
+    }
+
+    /* ─── Overlay + Side Menu ─── */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 800;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      max-width: 340px;
+      height: 100vh;
+      height: 100dvh;
+      background: #fff;
+      z-index: 900;
+      transform: translateX(-100%);
+      transition: transform 0.5s cubic-bezier(0.25,0.1,0.25,1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .side-menu.open { transform: translateX(0); }
+
+    .side-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid #EEEEEE;
+      flex-shrink: 0;
+    }
+
+    .side-menu-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+    }
+
+    .side-menu-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #F5F5F5;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.35s ease;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+
+    .side-menu-close:hover {
+      background: #EEEEEE;
+      transform: rotate(90deg);
+    }
+
+    .side-menu-nav {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 0;
+    }
+
+    .side-menu-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      color: #1A1A1A;
+      text-decoration: none;
+      border-bottom: 1px solid #F5F5F5;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .side-menu-link:hover {
+      background: #FAFAFA;
+      color: #000;
+    }
+
+    .side-menu-link .arrow {
+      font-size: 14px;
+      color: #BDBDBD;
+      transition: transform 0.2s ease;
+    }
+
+    .side-menu-link:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .side-menu-foot {
+      padding: 20px 24px;
+      border-top: 1px solid #EEEEEE;
+      flex-shrink: 0;
+    }
+
+    .side-menu-foot p {
+      font-size: 11px;
+      color: #9E9E9E;
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── HERO ─── */
+    .hero-section {
+      min-height: 85vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #FAFAFA 0%, #FFFFFF 60%, #F5F5F5 100%);
+      padding: 80px 0 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 55%;
+      height: 140%;
+      background: radial-gradient(ellipse at center, #F5F5F5 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1.1fr 1fr;
+        gap: 80px;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: #757575;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      color: #000;
+      margin-bottom: 24px;
+    }
+
+    .hero-heading .serif-word {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: #616161;
+      margin-bottom: 40px;
+      max-width: 460px;
+      font-weight: 300;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      color: #757575;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-trust-icon { font-size: 14px; }
+
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      background: linear-gradient(145deg, #EEEEEE 0%, #FAFAFA 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .hero-visual-icon {
+      font-size: 100px;
+      opacity: 0.18;
+      user-select: none;
+    }
+
+    .hero-visual-label {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: #BDBDBD;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 28px;
+      right: 28px;
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 16px;
+    }
+
+    /* ─── Section Headers ─── */
+    .sec-eyebrow {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      color: #9E9E9E;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .sec-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: #000;
+      line-height: 1.1;
+    }
+
+    .sec-heading .serif-word {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+
+    .sec-header-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .view-all-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #000;
+      text-decoration: none;
+      border-bottom: 1px solid #000;
+      padding-bottom: 3px;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .view-all-link:hover {
+      color: #616161;
+      border-bottom-color: #616161;
+    }
+
+    /* ─── Category Cards ─── */
+    .cat-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (min-width: 640px) {
+      .cat-cards-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (min-width: 1024px) {
+      .cat-cards-grid { grid-template-columns: repeat(6, 1fr); gap: 20px; }
+    }
+
+    .cat-card {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: #F5F5F5;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px 18px;
+      text-decoration: none;
+      overflow: hidden;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.4s ease;
+    }
+
+    .cat-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+
+    .cat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.35s ease;
+    }
+
+    .cat-card:hover::before {
+      background: rgba(0,0,0,0.02);
+    }
+
+    .cat-card-icon {
+      font-size: 40px;
+      opacity: 0.55;
+      line-height: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-card-body {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cat-card-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #000;
+      margin-bottom: 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .cat-card-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #757575;
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .cat-card-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #000;
+      border-bottom: 1.5px solid #000;
+      padding-bottom: 2px;
+      display: inline-block;
+      transition: color 0.2s ease;
+    }
+
+    .cat-card:hover .cat-card-cta { color: #424242; }
+
+    /* ─── Product Grid ─── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    }
+
+    @media (min-width: 1200px) {
+      .products-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    }
+
+    /* ─── Product Card (self-contained) ─── */
+    .p-card {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .p-card:hover { transform: translateY(-5px); }
+
+    .p-card-img {
+      aspect-ratio: 1 / 1;
+      background: #F5F5F5;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .p-card-img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, #F5F5F5, #FAFAFA);
+      font-size: 48px;
+      opacity: 0.3;
+      transition: opacity 0.3s ease;
+    }
+
+    .p-card:hover .p-card-img-inner { opacity: 0.22; }
+
+    .p-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      z-index: 2;
+    }
+
+    .p-card-badge.sale { background: #C62828; }
+
+    .p-card-wish {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #fff;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(-4px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .p-card:hover .p-card-wish {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .p-card-wish.wished { opacity: 1; transform: translateY(0); }
+
+    .p-card-add {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: none;
+      padding: 11px 0;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .p-card:hover .p-card-add {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .p-card-add:hover { background: #1A1A1A; }
+
+    .p-card-cat {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      color: #9E9E9E;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .p-card-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      line-height: 1.35;
+      margin-bottom: 7px;
+      letter-spacing: -0.01em;
+    }
+
+    .p-card-stars {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 7px;
+    }
+
+    .p-card-stars-val {
+      font-size: 12px;
+      color: #FFA000;
+      letter-spacing: 1px;
+    }
+
+    .p-card-reviews {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #9E9E9E;
+    }
+
+    .p-card-price {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .p-price-now {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -0.01em;
+    }
+
+    .p-price-was {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #BDBDBD;
+      text-decoration: line-through;
+    }
+
+    .p-price-off {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: #2E7D32;
+    }
+
+    /* ─── Features Bar ─── */
+    .features-bar {
+      background: #000;
+      padding: 52px 0;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .features-grid { grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    }
+
+    .feat-item {
+      text-align: center;
+      padding: 8px;
+    }
+
+    .feat-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .feat-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .feat-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #757575;
+      font-weight: 300;
+    }
+
+    /* ─── Newsletter ─── */
+    .newsletter-section {
+      padding: 100px 0;
+      background: #FAFAFA;
+      text-align: center;
+    }
+
+    .newsletter-wrap {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      margin: 0 auto;
+      max-width: 480px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 15px 20px;
+      border: 1px solid #E0E0E0;
+      border-right: none;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #000;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.25s ease;
+      min-width: 0;
+    }
+
+    .newsletter-input::placeholder { color: #9E9E9E; }
+
+    .newsletter-input:focus { border-color: #000; }
+
+    .newsletter-btn {
+      padding: 15px 28px;
+      background: #000;
+      color: #fff;
+      border: 1px solid #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s ease;
+    }
+
+    .newsletter-btn:hover { background: #1A1A1A; }
+
+    @media (max-width: 480px) {
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid #E0E0E0; border-bottom: none; }
+      .newsletter-input:focus { border-color: #000; }
+    }
+
+    /* ─── Footer ─── */
+    .footer {
+      background: #000;
+      color: #fff;
+      padding: 72px 0 36px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    }
+
+    .footer-brand-logo {
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #616161;
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 22px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid #2C2C2C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .footer-social-btn:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+    .footer-col-heading {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .footer-links-col {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .footer-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: #616161;
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.2s ease;
+    }
+
+    .footer-link:hover { color: #fff; }
+
+    .footer-bottom-bar {
+      border-top: 1px solid #1A1A1A;
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #424242;
+      font-weight: 300;
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .footer-legal a {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      color: #424242;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer-legal a:hover { color: #757575; }
+
+    /* ─── Scroll Reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+    .reveal-delay-4 { transition-delay: 0.32s; }
+
+    /* ─── Section padding ─── */
+    .section-pad { padding: 96px 0; }
+
+    /* ─── Btn system (inline-safe) ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 30px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary { background: #000; color: #fff; border-color: #000; }
+    .btn-primary:hover { background: #1A1A1A; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+
+    .btn-outline { background: transparent; color: #000; border-color: #000; }
+    .btn-outline:hover { background: #000; color: #fff; transform: translateY(-2px); }
+
+    .btn-lg { padding: 16px 36px; font-size: 12px; }
+
+    .btn:active { transform: scale(0.98) !important; transition-duration: 0.1s; }
+
+    /* ─── Utilities ─── */
+    .container {
+      width: 100%;
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    @media (min-width: 768px) { .container { padding: 0 40px; } }
+    @media (min-width: 1280px) { .container { padding: 0 56px; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .p-card { transform: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ═══════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════ -->
+
+  <div class="announcement-bar" id="announcementBar">
+    Free shipping on orders above ₹999
+    <span>·</span>
+    30-day easy returns
+    <span>·</span>
+    Premium quality guaranteed
+  </div>
+
+
+  <!-- ═══════════════════════════════════
+       NAVBAR
+       ═══════════════════════════════════ -->
+
+  <nav class="navbar" id="mainNavbar">
+
+    <!-- Main row -->
+    <div class="navbar-main-row">
+      <div class="container">
+        <div class="nav-wrap">
+
+          <!-- Hamburger (mobile only) -->
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu" aria-expanded="false">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+              <line x1="3" y1="6"  x2="21" y2="6"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          </button>
+
+          <!-- Logo -->
+          <a href="index.html" class="nav-logo" aria-label="NOVA STORE — Home">
+            NOVA<span class="store-word">STORE</span>
+          </a>
+
+          <!-- Search -->
+          <div class="nav-search-wrap">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              id="navSearchInput"
+              placeholder="Search products..."
+              autocomplete="off"
+              aria-label="Search products"
+            >
+          </div>
+
+          <!-- Right actions -->
+          <div class="nav-actions-row">
+
+            <!-- Wishlist -->
+            <button class="nav-icon-btn" aria-label="Wishlist" title="Wishlist">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </button>
+
+            <!-- Account -->
+            <button class="nav-icon-btn" aria-label="Account" title="Account">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+            </button>
+
+            <!-- Cart -->
+            <a href="cart.html" class="nav-icon-btn" aria-label="Shopping cart">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="20" cy="21" r="1"/>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+              </svg>
+              <span class="cart-count" id="cartBadge" aria-live="polite" aria-label="Cart items"></span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Categories bar -->
+    <div class="cat-bar">
+      <div class="container">
+        <nav class="cat-bar-inner" aria-label="Product categories">
+          <a href="products.html"                      class="cat-link active">All Products</a>
+          <a href="products.html?cat=electronics"      class="cat-link">Electronics</a>
+          <a href="products.html?cat=fashion"          class="cat-link">Fashion</a>
+          <a href="products.html?cat=home"             class="cat-link">Home &amp; Living</a>
+          <a href="products.html?cat=beauty"           class="cat-link">Beauty</a>
+          <a href="products.html?cat=accessories"      class="cat-link">Accessories</a>
+          <a href="products.html?cat=fitness"          class="cat-link">Fitness</a>
+          <a href="products.html?cat=stationery"       class="cat-link">Stationery</a>
+        </nav>
+      </div>
+    </div>
+
+  </nav>
+
+
+  <!-- ═══════════════════════════════════
+       OVERLAY + SIDE MENU
+       ═══════════════════════════════════ -->
+
+  <div class="menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+
+  <aside class="side-menu" id="sideMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
+
+    <div class="side-menu-header">
+      <span class="side-menu-logo">NOVA STORE</span>
+      <button class="side-menu-close" id="sideMenuClose" aria-label="Close menu">✕</button>
+    </div>
+
+    <nav class="side-menu-nav">
+      <a href="index.html"                         class="side-menu-link"><span>Home</span><span class="arrow">→</span></a>
+      <a href="products.html"                      class="side-menu-link"><span>All Products</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=electronics"      class="side-menu-link"><span>Electronics</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=fashion"          class="side-menu-link"><span>Fashion</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=home"             class="side-menu-link"><span>Home &amp; Living</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=beauty"           class="side-menu-link"><span>Beauty</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=accessories"      class="side-menu-link"><span>Accessories</span><span class="arrow">→</span></a>
+      <a href="products.html?cat=fitness"          class="side-menu-link"><span>Fitness</span><span class="arrow">→</span></a>
+      <a href="cart.html"                          class="side-menu-link"><span>Cart</span><span class="arrow">→</span></a>
+    </nav>
+
+    <div class="side-menu-foot">
+      <p>© 2026 NOVA STORE · Designed with intention</p>
+    </div>
+
+  </aside>
+
+
+  <!-- ═══════════════════════════════════
+       HERO SECTION
+       ═══════════════════════════════════ -->
+
+  <section class="hero-section" aria-label="Hero banner">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- TEXT -->
+        <div>
+          <span class="hero-eyebrow">New Collection · 2026</span>
+
+          <h1 class="hero-heading">
+            Curated for<br>
+            <span class="serif-word">excellence</span>
+          </h1>
+
+          <p class="hero-sub">
+            Discover thoughtfully designed products that elevate your everyday.
+            Premium quality, timeless style — delivered to your door.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="products.html" class="btn btn-primary btn-lg">Shop Now</a>
+            <a href="#bestsellers" class="btn btn-outline btn-lg">Explore</a>
+          </div>
+
+          <div class="hero-trust">
+            <div class="hero-trust-item">
+              <span class="hero-trust-icon">⭐</span>
+              <span>4.8 avg rating</span>
+            </div>
+            <div class="hero-trust-item">
+              <span class="hero-trust-icon">🚚</span>
+              <span>Free shipping above ₹999</span>
+            </div>
+            <div class="hero-trust-item">
+              <span class="hero-trust-icon">↩️</span>
+              <span>30-day returns</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- VISUAL -->
+        <div class="hero-visual">
+          <div class="hero-visual-icon">📦</div>
+          <span class="hero-visual-label">Product image coming soon</span>
+          <span class="hero-badge">New Arrivals ↗</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FEATURED CATEGORIES
+       ═══════════════════════════════════ -->
+
+  <section class="section-pad" style="background: #fff;">
+    <div class="container">
+
+      <div class="reveal" style="text-align:center; margin-bottom: 52px;">
+        <span class="sec-eyebrow">Shop by Category</span>
+        <h2 class="sec-heading">Explore our <span class="serif-word">collections</span></h2>
+      </div>
+
+      <div class="cat-cards-grid">
+
+        <a href="products.html?cat=electronics" class="cat-card reveal reveal-delay-1" style="background: linear-gradient(145deg, #EEEEEE, #F8F8F8);">
+          <span class="cat-card-icon">🎧</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Electronics</p>
+            <p class="cat-card-sub">Latest tech &amp; gadgets</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=fashion" class="cat-card reveal reveal-delay-2" style="background: linear-gradient(145deg, #E8E8E8, #F5F5F5);">
+          <span class="cat-card-icon">👕</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Fashion</p>
+            <p class="cat-card-sub">Timeless style</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=home" class="cat-card reveal reveal-delay-3" style="background: linear-gradient(145deg, #F5F5F5, #FAFAFA);">
+          <span class="cat-card-icon">🏠</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Home &amp; Living</p>
+            <p class="cat-card-sub">Beautiful spaces</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=beauty" class="cat-card reveal reveal-delay-4" style="background: linear-gradient(145deg, #FAFAFA, #F0F0F0);">
+          <span class="cat-card-icon">💄</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Beauty</p>
+            <p class="cat-card-sub">Self-care essentials</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=accessories" class="cat-card reveal reveal-delay-1" style="background: linear-gradient(145deg, #EBEBEB, #F5F5F5);">
+          <span class="cat-card-icon">⌚</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Accessories</p>
+            <p class="cat-card-sub">Complete your look</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+        <a href="products.html?cat=fitness" class="cat-card reveal reveal-delay-2" style="background: linear-gradient(145deg, #F0F0F0, #F8F8F8);">
+          <span class="cat-card-icon">💪</span>
+          <div class="cat-card-body">
+            <p class="cat-card-name">Fitness</p>
+            <p class="cat-card-sub">Move with intention</p>
+            <span class="cat-card-cta">Shop Now →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       BESTSELLERS
+       ═══════════════════════════════════ -->
+
+  <section class="section-pad" id="bestsellers" style="background: #FAFAFA;">
+    <div class="container">
+
+      <div class="sec-header-row reveal">
+        <div>
+          <span class="sec-eyebrow">Most Loved</span>
+          <h2 class="sec-heading">Best <span class="serif-word">sellers</span></h2>
+        </div>
+        <a href="products.html" class="view-all-link">View All →</a>
+      </div>
+
+      <div class="products-grid reveal" id="bestsellersGrid">
+        <!-- Populated by JS -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       NEW ARRIVALS
+       ═══════════════════════════════════ -->
+
+  <section class="section-pad" style="background: #fff;">
+    <div class="container">
+
+      <div class="sec-header-row reveal">
+        <div>
+          <span class="sec-eyebrow">Just Arrived</span>
+          <h2 class="sec-heading">New <span class="serif-word">arrivals</span></h2>
+        </div>
+        <a href="products.html" class="view-all-link">View All →</a>
+      </div>
+
+      <div class="products-grid reveal" id="newArrivalsGrid">
+        <!-- Populated by JS -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FULL-WIDTH PROMO BANNER
+       ═══════════════════════════════════ -->
+
+  <section style="background: #000; padding: 80px 0; text-align: center;" aria-label="Promotion banner">
+    <div class="container">
+      <div class="reveal" style="max-width: 620px; margin: 0 auto;">
+        <span style="
+          display: inline-block;
+          font-family: 'Inter', sans-serif;
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.3em;
+          color: #757575;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        ">Limited Time</span>
+
+        <h2 style="
+          font-family: 'Inter', sans-serif;
+          font-size: clamp(2rem, 5vw, 3.5rem);
+          font-weight: 800;
+          letter-spacing: -0.04em;
+          color: #fff;
+          line-height: 1;
+          margin-bottom: 16px;
+        ">Up to <em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:400;">50% off</em></h2>
+
+        <p style="
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+          color: #616161;
+          margin-bottom: 36px;
+          font-weight: 300;
+          line-height: 1.7;
+        ">Seasonal sale across electronics, fashion and home. Limited stock — shop before it's gone.</p>
+
+        <a href="products.html" style="
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 16px 36px;
+          background: #fff;
+          color: #000;
+          font-family: 'Inter', sans-serif;
+          font-size: 12px;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: background 0.2s ease, transform 0.3s ease;
+        "
+        onmouseover="this.style.background='#F5F5F5'; this.style.transform='translateY(-2px)';"
+        onmouseout="this.style.background='#fff'; this.style.transform='translateY(0)';"
+        >Shop the Sale →</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FEATURES BAR
+       ═══════════════════════════════════ -->
+
+  <section class="features-bar" aria-label="Store promises">
+    <div class="container">
+      <div class="features-grid reveal">
+
+        <div class="feat-item">
+          <span class="feat-icon">🚚</span>
+          <p class="feat-name">Free Shipping</p>
+          <p class="feat-sub">On orders above ₹999</p>
+        </div>
+
+        <div class="feat-item">
+          <span class="feat-icon">↩️</span>
+          <p class="feat-name">Easy Returns</p>
+          <p class="feat-sub">30-day return policy</p>
+        </div>
+
+        <div class="feat-item">
+          <span class="feat-icon">🔒</span>
+          <p class="feat-name">Secure Payment</p>
+          <p class="feat-sub">100% safe checkout</p>
+        </div>
+
+        <div class="feat-item">
+          <span class="feat-icon">⭐</span>
+          <p class="feat-name">Premium Quality</p>
+          <p class="feat-sub">Hand-picked products</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       NEWSLETTER
+       ═══════════════════════════════════ -->
+
+  <section class="newsletter-section" aria-label="Newsletter signup">
+    <div class="newsletter-wrap">
+
+      <div class="reveal">
+        <span class="sec-eyebrow">Stay Updated</span>
+
+        <h2 class="sec-heading" style="margin-bottom: 14px;">
+          Join our <span class="serif-word">newsletter</span>
+        </h2>
+
+        <p style="
+          font-family: 'Inter', sans-serif;
+          font-size: 14px;
+          color: #757575;
+          margin-bottom: 32px;
+          font-weight: 300;
+          line-height: 1.7;
+        ">Get 10% off your first order and early access to new collections.</p>
+
+        <form class="newsletter-form" id="newsletterForm" novalidate>
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="Enter your email address"
+            required
+            aria-label="Email address"
+            autocomplete="email"
+          >
+          <button type="submit" class="newsletter-btn">Subscribe</button>
+        </form>
+
+        <p style="
+          font-family: 'Inter', sans-serif;
+          font-size: 11px;
+          color: #BDBDBD;
+          margin-top: 14px;
+          font-weight: 300;
+        ">No spam. Unsubscribe anytime.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════ -->
+
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <!-- Brand -->
+        <div>
+          <p class="footer-brand-logo">NOVA STORE</p>
+          <p class="footer-brand-desc">
+            Curated excellence for the modern lifestyle. Premium products, thoughtful design, delivered with care.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="footer-social-btn" aria-label="Instagram">📷</a>
+            <a href="#" class="footer-social-btn" aria-label="Twitter">🐦</a>
+            <a href="#" class="footer-social-btn" aria-label="Facebook">📱</a>
+            <a href="#" class="footer-social-btn" aria-label="YouTube">▶️</a>
+          </div>
+        </div>
+
+        <!-- Shop -->
+        <div>
+          <h4 class="footer-col-heading">Shop</h4>
+          <nav class="footer-links-col">
+            <a href="products.html"                     class="footer-link">All Products</a>
+            <a href="products.html?cat=electronics"     class="footer-link">Electronics</a>
+            <a href="products.html?cat=fashion"         class="footer-link">Fashion</a>
+            <a href="products.html?cat=home"            class="footer-link">Home &amp; Living</a>
+            <a href="products.html?cat=beauty"          class="footer-link">Beauty</a>
+            <a href="products.html?cat=accessories"     class="footer-link">Accessories</a>
+          </nav>
+        </div>
+
+        <!-- Customer Care -->
+        <div>
+          <h4 class="footer-col-heading">Customer Care</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="footer-link">Contact Us</a>
+            <a href="#" class="footer-link">Shipping Info</a>
+            <a href="#" class="footer-link">Returns &amp; Exchanges</a>
+            <a href="#" class="footer-link">Size Guide</a>
+            <a href="#" class="footer-link">FAQ</a>
+          </nav>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="footer-col-heading">Company</h4>
+          <nav class="footer-links-col">
+            <a href="#" class="footer-link">About Us</a>
+            <a href="#" class="footer-link">Careers</a>
+            <a href="#" class="footer-link">Press</a>
+            <a href="#" class="footer-link">Sustainability</a>
+            <a href="#" class="footer-link">Store Locator</a>
+          </nav>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">© 2026 NOVA STORE. All rights reserved.</p>
+        <nav class="footer-legal" aria-label="Legal links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </nav>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════ -->
+
+  <script src="js/main.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Helpers ── */
+      function fmt(n) {
+        return '₹' + Number(n).toLocaleString('en-IN');
+      }
+
+      function calcDiscount(orig, curr) {
+        if (!orig || orig <= curr) return 0;
+        return Math.round(((orig - curr) / orig) * 100);
+      }
+
+      function stars(rating) {
+        const full  = Math.floor(rating);
+        const empty = 5 - full;
+        return '★'.repeat(full) + '☆'.repeat(empty);
+      }
+
+      /* ── Product Card Builder ── */
+      function buildCard(product) {
+        const discount    = calcDiscount(product.originalPrice, product.price);
+        const hasDiscount = discount > 0;
+
+        const badgeHtml = product.badge
+          ? `<span class="p-card-badge ${product.badge === 'SALE' ? 'sale' : ''}">${product.badge}</span>`
+          : '';
+
+        const discHtml = hasDiscount
+          ? `<span class="p-price-was">${fmt(product.originalPrice)}</span>
+             <span class="p-price-off">${discount}% OFF</span>`
+          : '';
+
+        return `
+          <article class="p-card" role="article" aria-label="${product.name}">
+            <div class="p-card-img">
+              <div class="p-card-img-inner">📦</div>
+              ${badgeHtml}
+              <button
+                class="p-card-wish"
+                data-wishlist-id="${product.id}"
+                onclick="event.stopPropagation(); toggleWishlist(${product.id}, this)"
+                aria-label="Add to wishlist"
+                aria-pressed="false"
+              >🤍</button>
+              <button
+                class="p-card-add"
+                onclick="event.stopPropagation(); addToCart(${product.id})"
+                aria-label="Add ${product.name} to cart"
+              >Add to Cart</button>
+            </div>
+
+            <a href="product.html?id=${product.id}" style="display:block; text-decoration:none; color:inherit;">
+              <p class="p-card-cat">${product.categoryName}</p>
+              <p class="p-card-name">${product.name}</p>
+
+              <div class="p-card-stars" aria-label="${product.rating} out of 5 stars">
+                <span class="p-card-stars-val" aria-hidden="true">${stars(product.rating)}</span>
+                <span class="p-card-reviews">(${product.reviews})</span>
+              </div>
+
+              <div class="p-card-price">
+                <span class="p-price-now">${fmt(product.price)}</span>
+                ${discHtml}
+              </div>
+            </a>
+          </article>
+        `;
+      }
+
+      /* ── Render grids ── */
+      function renderGrid(products, id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        if (!products || !products.length) {
+          el.innerHTML = '<p style="color:#9E9E9E;font-size:14px;padding:40px 0;">No products found.</p>';
+          return;
+        }
+        el.innerHTML = products.map(buildCard).join('');
+      }
+
+      /* ── Navbar scroll ── */
+      var navbar = document.getElementById('mainNavbar');
+      window.addEventListener('scroll', function () {
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+      }, { passive: true });
+
+      /* ── Hamburger / Side Menu ── */
+      var hamburger = document.getElementById('hamburgerBtn');
+      var sideMenu  = document.getElementById('sideMenu');
+      var overlay   = document.getElementById('menuOverlay');
+      var closeBtn  = document.getElementById('sideMenuClose');
+      var menuOpen  = false;
+
+      function openMenu() {
+        sideMenu.classList.add('open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        hamburger.setAttribute('aria-expanded', 'true');
+        menuOpen = true;
+        closeBtn.focus();
+      }
+
+      function closeMenu() {
+        sideMenu.classList.remove('open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        hamburger.setAttribute('aria-expanded', 'false');
+        menuOpen = false;
+      }
+
+      hamburger.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.addEventListener('click', closeMenu);
+
+      sideMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && menuOpen) closeMenu();
+      });
+
+      /* ── Cart badge ── */
+      function updateCartBadge() {
+        try {
+          var cart  = JSON.parse(localStorage.getItem('nova_cart') || '[]');
+          var count = cart.reduce(function (s, i) { return s + (i.quantity || 1); }, 0);
+          var badge = document.getElementById('cartBadge');
+          if (badge) {
+            badge.textContent   = count > 99 ? '99+' : count;
+            badge.style.display = count > 0 ? 'flex' : 'none';
+          }
+        } catch (e) {}
+      }
+
+      /* ── Global addToCart (safe) ── */
+      window.addToCart = function (id, qty, opts) {
+        if (window.NovaStore && window.NovaStore.Cart) {
+          window.NovaStore.Cart.add(id, qty || 1, opts || {});
+          updateCartBadge();
+        }
+      };
+
+      /* ── Global toggleWishlist ── */
+      window.toggleWishlist = function (id, btn) {
+        if (window.NovaStore && window.NovaStore.Wishlist) {
+          window.NovaStore.Wishlist.toggle(id);
+          var has = window.NovaStore.Wishlist.has(id);
+          if (btn) {
+            btn.innerHTML    = has ? '❤️' : '🤍';
+            btn.ariaPressed  = String(has);
+            btn.classList.toggle('wished', has);
+          }
+        }
+      };
+
+      /* ── Scroll Reveal ── */
+      function initReveal() {
+        if (!('IntersectionObserver' in window)) {
+          document.querySelectorAll('.reveal').forEach(function (el) {
+            el.classList.add('revealed');
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          observer.observe(el);
+        });
+      }
+
+      /* ── Smooth anchor scroll ── */
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var href = link.getAttribute('href');
+          if (!href || href === '#') return;
+          var target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            var offset = navbar ? navbar.offsetHeight + 8 : 80;
+            window.scrollTo({
+              top: target.getBoundingClientRect().top + window.scrollY - offset,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      /* ── Newsletter ── */
+      document.getElementById('newsletterForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = this.querySelector('input[type="email"]');
+        var val   = (input.value || '').trim();
+        var emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRx.test(val)) {
+          input.focus();
+          input.style.borderColor = '#C62828';
+          setTimeout(function () { input.style.borderColor = ''; }, 2000);
+          return;
+        }
+
+        /* Show success toast */
+        if (window.NovaStore && window.NovaStore.Toast) {
+          window.NovaStore.Toast.success('Subscribed! Check your inbox for 10% off ✓', 4000);
+        } else {
+          alert('Subscribed successfully!');
+        }
+
+        this.reset();
+      });
+
+      /* ── Nav search (filter on products page) ── */
+      var navSearch = document.getElementById('navSearchInput');
+      if (navSearch) {
+        navSearch.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            var q = navSearch.value.trim();
+            if (q) {
+              window.location.href = 'products.html?q=' + encodeURIComponent(q);
+            }
+          }
+        });
+      }
+
+      /* Keyboard shortcut — / → focus search */
+      document.addEventListener('keydown', function (e) {
+        if (e.key === '/' && !e.target.matches('input, textarea, select')) {
+          e.preventDefault();
+          if (navSearch) navSearch.focus();
+        }
+      });
+
+      /* ── INIT ── */
+      document.addEventListener('DOMContentLoaded', function () {
+
+        /* Cart badge */
+        updateCartBadge();
+
+        /* Listen for cart updates from main.js */
+        window.addEventListener('nova:cart:change', updateCartBadge);
+
+        /* If main.js is loaded, use its data */
+        var products = window.NovaStore ? window.NovaStore.PRODUCTS : [];
+
+        if (products && products.length) {
+
+          /* Bestsellers — top 4 by rating */
+          var bestsellers = products
+            .slice()
+            .sort(function (a, b) { return b.rating - a.rating; })
+            .slice(0, 4);
+          renderGrid(bestsellers, 'bestsellersGrid');
+
+          /* New arrivals — last 4 by id */
+          var newArrivals = products
+            .slice()
+            .sort(function (a, b) { return b.id - a.id; })
+            .slice(0, 4);
+          renderGrid(newArrivals, 'newArrivalsGrid');
+
+        } else {
+          /* Fallback: placeholders if main.js not yet ready */
+          ['bestsellersGrid', 'newArrivalsGrid'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) {
+              el.innerHTML = '<p style="color:#9E9E9E;font-size:14px;padding:40px 0;grid-column:1/-1;">Loading products...</p>';
+            }
+          });
+        }
+
+        /* Reveal after content painted */
+        requestAnimationFrame(initReveal);
+
+      });
+
+      /* ── Dev info ── */
+      console.log('%c✨ NOVA STORE', 'color:#000;font-size:14px;font-weight:800;letter-spacing:2px;');
+      console.log('%cHomepage loaded · v1.0.0', 'color:#9E9E9E;font-size:11px;');
+
+    })();
+  </script>
+
+</body>
+</html>
